@@ -121,14 +121,14 @@ world0 = World {
     worldDt = 0
   }
 
-tree1 = (mkThing "Tree" "https://i.imgur.com/pTNgEtl.png" 2 3)
-grass = (mkThing "Grass" "https://i.imgur.com/ySeUs5Z.png" 1.1 1.1) { thingOpaque = True, thingCollisionRect = Nothing }
-water = (mkThing "Water" "https://i.imgur.com/sHorAql.png" 1.01 1.01) { thingOpaque = True }
-lava = (mkThing "Lava" "https://i.imgur.com/gfy7sDy.png" 1.01 1.0) { thingOpaque = True, thingCollisionBehavior = CollisionApply $ \s -> s { spriteHealth = max 0 (spriteHealth s - 0.1) } }
-squirtle = (mkThing "Squirtle" "https://i.imgur.com/MKoGXVw.png" 1 1) { thingCollisionBehavior = CollisionApply $ \s -> s { spriteHealth = min 5 (spriteHealth s + 0.1), spriteMaxVelocity = 10 } }
-heartImg = image "Heart" "https://i.imgur.com/8g9MFyK.png" 1 1
+tree1 = (mkThing "Tree" "https://github.com/3noch/codeworld-game/raw/main/img/tree1.png" 2 3)
+grass = (mkThing "Grass" "https://github.com/3noch/codeworld-game/raw/main/img/grass.png" 1.1 1.1) { thingOpaque = True, thingCollisionRect = Nothing }
+water = (mkThing "Water" "https://github.com/3noch/codeworld-game/raw/main/img/water.png" 1.01 1.01) { thingOpaque = True }
+lava = (mkThing "Lava" "https://github.com/3noch/codeworld-game/raw/main/img/lava.png" 1.01 1.0) { thingOpaque = True, thingCollisionBehavior = CollisionApply $ \s -> s { spriteHealth = max 0 (spriteHealth s - 0.1) } }
+squirtle = (mkThing "Squirtle" "https://github.com/3noch/codeworld-game/raw/main/img/squirtle.png" 1 1) { thingCollisionBehavior = CollisionApply $ \s -> s { spriteHealth = min 5 (spriteHealth s + 0.1), spriteMaxVelocity = 10 } }
+heartImg = image "Heart" "https://github.com/3noch/codeworld-game/raw/main/img/heart.png" 1 1
 
-person = (mkThing "Person" "https://i.imgur.com/cuGssCz.png" 1 1) { thingCollisionRect = Just (Rect 0.1 0 0.8 1) }
+person = (mkThing "Person" "https://github.com/3noch/codeworld-game/raw/main/img/player.png" 1 1) { thingCollisionRect = Just (Rect 0.1 0 0.8 1) }
 
 parseMapChar 'T' = Just tree1
 parseMapChar 'W' = Just water
