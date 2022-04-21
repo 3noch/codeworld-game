@@ -141,6 +141,7 @@ world0 = World {
 
 tree1 = (mkThing "Tree" "https://github.com/3noch/codeworld-game/raw/main/img/tree1.png" 2 3)
 grass = (mkThing "Grass" "https://github.com/3noch/codeworld-game/raw/main/img/grass.png" 1.1 1.1) { thingOpaque = True, thingCollisionRect = Nothing }
+dirt = (mkThing "Grass" "https://github.com/3noch/codeworld-game/raw/main/img/dirt.png" 1.1 1.1) { thingOpaque = True, thingCollisionRect = Nothing }
 water = (mkThing "Water" "https://github.com/3noch/codeworld-game/raw/main/img/water.png" 1.01 1.01) { thingOpaque = True }
 lava = (mkThing "Lava" "https://github.com/3noch/codeworld-game/raw/main/img/lava.png" 1.01 1.0) { thingOpaque = True, thingCollisionBehavior = CollisionApply $ modPlayer $ \s -> s { spriteHealth = max 0 (spriteHealth s - 0.1) } }
 squirtle = (mkThing "Squirtle" "https://github.com/3noch/codeworld-game/raw/main/img/squirtle.png" 1 1) { thingCollisionBehavior = CollisionApply $ modPlayer $ \s -> s { spriteHealth = min 5 (spriteHealth s + 0.1), spriteMaxVelocity = 10 } }
@@ -169,7 +170,7 @@ mkArea rows = foldl' (\m (x, y, maybeThing) -> maybe m (add m x y) maybeThing) (
     indexed = concat $
       for (height `div` 2) (-1) rows $ \(y, columns) ->
         for (-width `div` 2) 1 columns $ \(x, thing) -> (fromIntegral x, fromIntegral y, thing)
-    for start step xs f = map f (zip [start, start+step..] xs)
+    for start step xs f = zipWith (curry f) [start, start+step..] xs
     height = length rows
     width = maximum $ map length rows
 
