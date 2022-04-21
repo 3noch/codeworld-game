@@ -99,7 +99,6 @@ data MovementLogic = MovementLogicUserControlled | MovementLogicStationary | Mov
 data World = World {
     worldPlayer :: Sprite,
     worldMap :: Area,
-    worldDefaultTile :: Thing,
     worldDt :: Double
   }
 
@@ -107,7 +106,8 @@ data Area = Area {
     areaTiles :: Map (Double, Double) LocationContent,
     areaSprites :: [Sprite],
     areaWidth :: Int,
-    areaHeight :: Int
+    areaHeight :: Int,
+    areaDefaultTile :: Thing
   }
 
 data LocationContent = LocationContent {
@@ -129,41 +129,46 @@ mapInsert x y thing = Map.insertWith
 
 main = activityOf world0 handle draw
 
-level1Area = mkArea $ areaStr level1
-level2Area = mkArea $ areaStr level2
+level1Area = mkArea grass $ areaStr level1
+level2Area = mkArea dirt $ areaStr level2
 
 world0 = World {
-    worldPlayer = Sprite person 0 (10) 0 0 5 4 MovementLogicUserControlled,
+    worldPlayer = Sprite person 0 10 0 0 5 4 MovementLogicUserControlled,
     worldMap = level1Area,
-    worldDefaultTile = grass,
     worldDt = 0
   }
 
-tree1 = (mkThing "Tree" "https://github.com/3noch/codeworld-game/raw/main/img/tree1.png" 2 3)
+tree1 = (mkThing "Tree" "https://github.com/3noch/codeworld-game/raw/main/img/tree1.png" 2 3) { thingCollisionRect = Just (Rect 0.4 (-0.8) 1.2 (-3)) }
 grass = (mkThing "Grass" "https://github.com/3noch/codeworld-game/raw/main/img/grass.png" 1.1 1.1) { thingOpaque = True, thingCollisionRect = Nothing }
-dirt = (mkThing "Grass" "https://github.com/3noch/codeworld-game/raw/main/img/dirt.png" 1.1 1.1) { thingOpaque = True, thingCollisionRect = Nothing }
-water = (mkThing "Water" "https://github.com/3noch/codeworld-game/raw/main/img/water.png" 1.01 1.01) { thingOpaque = True }
-lava = (mkThing "Lava" "https://github.com/3noch/codeworld-game/raw/main/img/lava.png" 1.01 1.0) { thingOpaque = True, thingCollisionBehavior = CollisionApply $ modPlayer $ \s -> s { spriteHealth = max 0 (spriteHealth s - 0.1) } }
-squirtle = (mkThing "Squirtle" "https://github.com/3noch/codeworld-game/raw/main/img/squirtle.png" 1 1) { thingCollisionBehavior = CollisionApply $ modPlayer $ \s -> s { spriteHealth = min 5 (spriteHealth s + 0.1), spriteMaxVelocity = 10 } }
+dirt = (mkThing "Dirt" "https://github.com/3noch/codeworld-game/raw/main/img/dirt.png" 1.1 1.1) { thingOpaque = True, thingCollisionRect = Nothing }
+water = (mkThing "Water" "https://github.com/3noch/codeworld-game/raw/main/img/water.png" 1.1 1.1) { thingOpaque = True, thingCollisionRect = Just $ Rect 0 0 1 (-1) }
+lava = (mkThing "Lava" "https://github.com/3noch/codeworld-game/raw/main/img/lava.png" 1.1 1.1) {
+    thingCollisionRect = Just $ Rect 0 0 1 1,
+    thingOpaque = True,
+    thingCollisionBehavior = CollisionApply $ modPlayer $ \s -> s { spriteHealth = max 0 (spriteHealth s - 0.1) }
+  }
+squirtle = (mkThing "Squirtle" "https://github.com/3noch/codeworld-game/raw/main/img/squirtle.png" 1 1) {
+    thingCollisionBehavior = CollisionApply $ modPlayer $ \s -> s { spriteHealth = min 5 (spriteHealth s + 0.1), spriteMaxVelocity = 5 }
+  }
 heartImg = image "Heart" "https://github.com/3noch/codeworld-game/raw/main/img/heart.png" 1 1
 
-person = (mkThing "Person" "https://github.com/3noch/codeworld-game/raw/main/img/player.png" 1 1) { thingCollisionRect = Just (Rect 0.1 0 0.8 1) }
+person = (mkThing "Person" "https://github.com/3noch/codeworld-game/raw/main/img/player.png" 1 1) { thingCollisionRect = Just (Rect 0.1 (-0.3) 0.8 (-0.7)) }
 
-portalTo level = Thing (solidRectangle 1 1) 1 1 True (Just (Rect 0 0 1 1)) (CollisionApply $ \w -> modPlayerLoc (const 0) (const 0) $ (w { worldMap = level }))
+portalTo level x y = Thing (solidRectangle 1 1) 1 1 True (Just (Rect 0 0 1 1)) (CollisionApply $ \w -> modPlayerLoc (const x) (const y) $ (w { worldMap = level }))
 
 parseMapChar 'T' = Just $ Right tree1
 parseMapChar 'W' = Just $ Right water
 parseMapChar 'L' = Just $ Right lava
 parseMapChar 'P' = Just $ Left $ Sprite person 0 0 0 0 5 3 MovementLogicGoToPlayer
 parseMapChar 'q' = Just $ Left $ Sprite squirtle 0 0 0 0 5 4 MovementLogicStationary
-parseMapChar '2' = Just $ Right $ portalTo level2Area
-parseMapChar '1' = Just $ Right $ portalTo level1Area
+parseMapChar '2' = Just $ Right $ portalTo level2Area 0 0
+parseMapChar '1' = Just $ Right $ portalTo level1Area 0 10
 parseMapChar _ = Nothing
 
 areaStr str = map (map parseMapChar) str
 
-mkArea :: [[Maybe (Either Sprite Thing)]] -> Area
-mkArea rows = foldl' (\m (x, y, maybeThing) -> maybe m (add m x y) maybeThing) (Area Map.empty [] width height) indexed
+mkArea :: Thing -> [[Maybe (Either Sprite Thing)]] -> Area
+mkArea defaultTile rows = foldl' (\m (x, y, maybeThing) -> maybe m (add m x y) maybeThing) (Area Map.empty [] width height defaultTile) indexed
   where
     add m x y (Left sprite) = m { areaSprites = sprite { spriteX = x, spriteY = y } : areaSprites m }
     add m x y (Right thing) = m { areaTiles = mapInsert x y thing (areaTiles m) }
@@ -175,7 +180,7 @@ mkArea rows = foldl' (\m (x, y, maybeThing) -> maybe m (add m x y) maybeThing) (
     width = maximum $ map length rows
 
 mkThing :: Text -> Text -> Double -> Double -> Thing
-mkThing name url w h = Thing (image name url w h) w h False (Just $ Rect 0 0 w h) CollisionBlock
+mkThing name url w h = Thing (image name url w h) w h False (Just $ Rect 0 0 w (-h)) CollisionBlock
 
 draw world = frameRate & healthHearts & translated (-rectCenterX viewPort) (-rectCenterY viewPort) (pictures things & pictures tiles) & solidRectangle 20 20
   where
@@ -185,7 +190,7 @@ draw world = frameRate & healthHearts & translated (-rectCenterX viewPort) (-rec
     tileViewPort = tileRect viewPort
     tiles = [ translated x y $ thingPic thing
             | x <- [rectLeft tileViewPort..rectRight tileViewPort], y <- [rectTop tileViewPort, rectTop tileViewPort-1..rectBottom tileViewPort]
-            , let thing = fromMaybe (worldDefaultTile world) $ locationContentTile =<< Map.lookup (y, x) theMap
+            , let thing = fromMaybe (areaDefaultTile $ worldMap world) $ locationContentTile =<< Map.lookup (y, x) theMap
             , inViewPort (x, y) thing
             ]
     things = [translated x y (thingPic thing) | ((y, x), loc) <- Map.toAscList theMap, thing <- locationContentThings loc, inViewPort (x, y) thing]
@@ -233,8 +238,8 @@ overlapping (Rect l0 t0 r0 b0) (Rect l1 t1 r1 b1) = l0 < r1 && r0 > l1 && t0 > b
 boundingRect :: (Double, Double) -> Rect Double -> Rect Double
 boundingRect (x, y) (Rect l t r b) = Rect l' t' (l' + w) (t' - h)
   where
-    w = r - l
-    h = b - t
+    w = abs (r - l)
+    h = abs (b - t)
     l' = x + l - w/2
     t' = y + t + h/2
 
@@ -252,7 +257,7 @@ buildCollisions a m = foldl' doCollision (0, 0, id) $ collisionRects m
     collisionRects xs = [(boundingRect (x, y) colRect, thingCollisionBehavior thing) | (x, y, LocationContent tile things) <- xs, thing <- maybeToList tile ++ things, Just colRect <- [thingCollisionRect thing]]
 
 drawRect :: Rect Double -> Picture
-drawRect (Rect l t r b) = polyline(points)
+drawRect (Rect l t r b) = polyline points
   where
     points = [(l, t), (r, t), (r, b), (l, b), (l, t)]
 
