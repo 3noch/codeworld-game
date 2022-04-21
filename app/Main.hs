@@ -11,7 +11,7 @@ import Data.Text (Text)
 import qualified Data.Text as T
 import Data.Maybe
 import Control.Applicative
-import Data.List (foldl')
+import Data.List (foldl', sortOn)
 import Data.Foldable
 
 level1 =
@@ -94,7 +94,7 @@ data Sprite = Sprite {
     spriteMaxVelocity :: Double,
     spriteMovement :: MovementLogic
   }
-data MovementLogic = MovementLogicUserControlled | MovementLogicStationary | MovementLogicGoToPlayer
+data MovementLogic = MovementLogicStationary | MovementLogicGoToPlayer
 
 data World = World {
     worldPlayer :: Sprite,
@@ -118,6 +118,7 @@ data LocationContent = LocationContent {
 data Rect a = Rect { rectLeft :: a, rectTop :: a, rectRight :: a, rectBottom :: a }
 rectCenterX (Rect l _ r _) = l + abs (l - r) / 2
 rectCenterY (Rect _ t _ b) = t - abs (b - t) / 2
+(.+) (x, y) (Rect l t r b) = Rect (l + x) (t + y) (r + x) (b + y)
 
 mapInsert :: Double -> Double -> Thing -> Map (Double, Double) LocationContent -> Map (Double, Double) LocationContent
 mapInsert x y thing = Map.insertWith
@@ -133,7 +134,7 @@ level1Area = mkArea grass $ areaStr level1
 level2Area = mkArea dirt $ areaStr level2
 
 world0 = World {
-    worldPlayer = Sprite person 0 10 0 0 5 4 MovementLogicUserControlled,
+    worldPlayer = Sprite person 0 10 0 0 5 4 MovementLogicStationary,
     worldMap = level1Area,
     worldDt = 0
   }
@@ -159,7 +160,7 @@ portalTo level x y = Thing (solidRectangle 1 1) 1 1 True (Just (Rect 0 0 1 1)) (
 parseMapChar 'T' = Just $ Right tree1
 parseMapChar 'W' = Just $ Right water
 parseMapChar 'L' = Just $ Right lava
-parseMapChar 'P' = Just $ Left $ Sprite person 0 0 0 0 5 3 MovementLogicGoToPlayer
+parseMapChar 'P' = Just $ Left $ Sprite person 0 0 0 0 5 3 MovementLogicStationary --MovementLogicGoToPlayer
 parseMapChar 'q' = Just $ Left $ Sprite squirtle 0 0 0 0 5 4 MovementLogicStationary
 parseMapChar '2' = Just $ Right $ portalTo level2Area 0 0
 parseMapChar '1' = Just $ Right $ portalTo level1Area 0 10
@@ -244,15 +245,18 @@ boundingRect (x, y) (Rect l t r b) = Rect l' t' (l' + w) (t' - h)
     t' = y + t + h/2
 
 buildCollisions :: Rect Double -> [(Double, Double, LocationContent)] -> (Double, Double, World -> World)
-buildCollisions a m = foldl' doCollision (0, 0, id) $ collisionRects m
+buildCollisions r m = applyCollisionsTo r
   where
-    doCollision (x0, y0, f) (rect, behavior) = case behavior of
+    foundCollisions = filter (\(rect1, _) -> overlapping r rect1) $ collisionRects m
+    applyCollisionsTo rect = foldl' (doCollision rect) (0, 0, id) foundCollisions
+    doCollision rect0 (x0, y0, f) (rect1, behavior) = case behavior of
       CollisionApply eff | x1 /= 0 || y1 /= 0 -> (x0, y0, eff >>> f)
       CollisionBlock -> (biggestMag x0 x1, biggestMag y0 y1, f)
       _ -> (x0, y0, f)
       where
-        (x1, y1) = collision1 a rect
+        (x1, y1) = collision1 rect0 rect1
     biggestMag a b = if abs a > abs b then a else b
+    
     collisionRects :: [(Double, Double, LocationContent)] -> [(Rect Double, CollisionBehavior)]
     collisionRects xs = [(boundingRect (x, y) colRect, thingCollisionBehavior thing) | (x, y, LocationContent tile things) <- xs, thing <- maybeToList tile ++ things, Just colRect <- [thingCollisionRect thing]]
 
@@ -302,7 +306,6 @@ updateSpriteMovement dt player sprite = case spriteMovement sprite of
       spriteVelocityY = sin angleToPlayer * spriteMaxVelocity sprite
       vecDiff = vectorDifference (spriteX player, spriteY player) (spriteX sprite, spriteY sprite)
       angleToPlayer = vectorDirection vecDiff
-  _ -> sprite
 
 spriteCollisionRect :: Sprite -> Rect Double
 spriteCollisionRect (Sprite thing x y _ _ _ _ _) = boundingRect (x, y) $ fromMaybe (Rect 0 0 (thingWidth thing) (thingHeight thing)) (thingCollisionRect thing)
