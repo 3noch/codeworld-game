@@ -1,16 +1,17 @@
-{-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE OverloadedStrings, TupleSections #-}
 
+import Control.Applicative
 import Control.Category ((<<<), (>>>))
 import CodeWorld
 import CodeWorld.Image
+import Data.Foldable
+import Data.List (foldl', sortOn, insertBy)
 import Data.Map (Map)
 import qualified Data.Map as Map
+import Data.Maybe
+import Data.Ord
 import Data.Text (Text)
 import qualified Data.Text as T
-import Data.Maybe
-import Control.Applicative
-import Data.List (foldl', sortOn)
-import Data.Foldable
 
 main = activityOf world0 update draw
 
@@ -159,10 +160,10 @@ drawAlive world = frameRate & healthHearts & translated (-rectCenterX viewPort) 
     tileViewPort = tileRect viewPort
     tiles = [ translated x y $ thingPic thing
             | x <- [rectLeft tileViewPort..rectRight tileViewPort], y <- [rectTop tileViewPort, rectTop tileViewPort-1..rectBottom tileViewPort]
-            , let thing = fromMaybe (areaDefaultTile $ worldArea world) $ locationContentTile =<< Map.lookup (y, x) theMap
+            , let thing = fromMaybe (areaDefaultTile $ worldArea world) $ locationContentTile =<< Map.lookup (floor y, floor x) theMap
             , inViewPort (x, y) thing
             ]
-    things = [translated x y (thingPic thing) | ((y, x), loc) <- Map.toAscList theMap, thing <- locationContentThings loc, inViewPort (x, y) thing]
+    things = [translated x y (thingPic thing) | (_, loc) <- Map.toAscList theMap, ((y, x), thing) <- locationContentThings loc, inViewPort (x, y) thing]
 
     theMap = mapInsert playerX playerY playerThing $ mkAreaThings (worldArea world)
     Sprite playerThing playerX playerY _ _ playerHealth _ _ = worldPlayer world
@@ -180,14 +181,18 @@ drawAlive world = frameRate & healthHearts & translated (-rectCenterX viewPort) 
     col = collision (spriteCollisionRect $ worldPlayer world) [(x, y, loc) | ((y, x), loc) <- Map.toAscList $ worldArea world]
     -}
 
-mapInsert :: Double -> Double -> Thing -> Map (Double, Double) LocationContent -> Map (Double, Double) LocationContent
+mapInsert :: Double -> Double -> Thing -> Map (Int, Int) LocationContent -> Map (Int, Int) LocationContent
 mapInsert x y thing = Map.insertWith
-  (\(LocationContent newTile newThings) (LocationContent oldTile oldThings) ->
-    LocationContent (newTile <|> oldTile) (newThings ++ oldThings)
+  (\_ (LocationContent oldTile oldThings) ->
+    if thingOpaque thing then LocationContent (newTile <|> oldTile) oldThings
+                         else LocationContent oldTile (insertBy (comparing fst) newThing oldThings)
+       
   )
-  (y, x)
-  (if thingOpaque thing then LocationContent (Just thing) [] else LocationContent Nothing [thing])
-
+  (floor y, floor x)
+  (if thingOpaque thing then LocationContent newTile [] else LocationContent Nothing [newThing])
+  where
+    newTile = if thingOpaque thing then Just thing else Nothing
+    newThing = ((y, x), thing)
 mkAreaThings area = foldl' (\m sprite -> mapInsert (spriteX sprite) (spriteY sprite) (spriteThing sprite) m) (areaTiles area) (areaSprites area)
 
 -- Types --
@@ -225,7 +230,7 @@ data World = World {
   }
 
 data Area = Area {
-    areaTiles :: Map (Double, Double) LocationContent,
+    areaTiles :: Map (Int, Int) LocationContent,
     areaSprites :: [Sprite],
     areaWidth :: Int,
     areaHeight :: Int,
@@ -248,7 +253,7 @@ mkArea defaultTile rows = foldl' (\m (x, y, maybeThing) -> maybe m (add m x y) m
 
 data LocationContent = LocationContent {
     locationContentTile :: Maybe Thing, -- Opaque tile at this location
-    locationContentThings :: [Thing]
+    locationContentThings :: [((Double, Double), Thing)] -- y, x, thing
   }
 
 --   Rect
@@ -288,10 +293,10 @@ collision1 rect1@(Rect l0 t0 r0 b0) rect2@(Rect l1 t1 r1 b1) = if colliding then
       (x, False) -> (x, 0)
       (y, True) -> (0, y)
 
-buildCollisions :: Rect Double -> [(Double, Double, LocationContent)] -> (Double, Double, World -> World)
+buildCollisions :: Rect Double -> Map (Int, Int) LocationContent -> (Double, Double, World -> World)
 buildCollisions r m = applyCollisionsTo r
   where
-    foundCollisions = mapMaybe (\(rect, x) -> fmap (\overlap -> (overlap, rect, x)) $ rectOverlap rect r) $ collisionRects m
+    foundCollisions = mapMaybe (\(rect, x) -> (, rect, x) <$> rectOverlap rect r) $ collisionRects nearbyThings
     sortedCollisions = sortOn (\(overlap, _, _) -> negate $ rectArea overlap) foundCollisions
     applyCollisionsTo rect = foldl' (doCollision rect) (0, 0, id) sortedCollisions
     doCollision rect0 (x, y, f) (_, rect1, behavior) = case behavior of
@@ -304,8 +309,18 @@ buildCollisions r m = applyCollisionsTo r
 
     doRemoveSprite rect world = world{worldArea = (worldArea world){areaSprites = removeSpriteWithRect rect (areaSprites (worldArea world))}}
 
-    collisionRects :: [(Double, Double, LocationContent)] -> [(Rect Double, CollisionBehavior)]
-    collisionRects xs = [(boundingRect (x, y) colRect, thingCollisionBehavior thing) | (x, y, LocationContent tile things) <- xs, thing <- maybeToList tile ++ things, Just colRect <- [thingCollisionRect thing]]
+    collisionRects :: [((Double, Double), Thing)] -> [(Rect Double, CollisionBehavior)]
+    collisionRects things = [(boundingRect (x, y) colRect, thingCollisionBehavior thing) | ((y, x), thing) <- things, colRect <- maybeToList $ thingCollisionRect thing]
+
+    (rectX, rectY) = (rectCenterX r, rectCenterY r)
+    nearbyThings =
+      [ thing
+      | xOffset <- [-1, 0, 1]
+      , yOffset <- [-1, 0, 1]
+      , let (x, y) = (rectX + xOffset, rectY + yOffset)
+      , LocationContent tile things <- maybeToList $ Map.lookup (floor y, floor x) m
+      , thing <- maybeToList (((y, x),) <$> tile) ++ things
+      ]
 
 drawRect :: Rect Double -> Picture
 drawRect (Rect l t r b) = polyline points
@@ -328,7 +343,7 @@ handle event = case event of
   KeyRelease "Right" -> modPlayerVelocityX (-)
   TimePassing dt -> \world ->
     let
-      getCollision sprite sprites = buildCollisions (spriteCollisionRect sprite) [(x, y, loc) | ((y, x), loc) <- Map.toAscList (mkAreaThings $ (worldArea world){areaSprites = sprites})]
+      getCollision sprite sprites = buildCollisions (spriteCollisionRect sprite) $ mkAreaThings (worldArea world){areaSprites = sprites}
       doCollision sprites sprite =
         let (xBounce, yBounce, _) = getCollision sprite (filter (\x -> (spriteX x, spriteY x) /= (spriteX sprite, spriteY sprite)) sprites) in
         modSpriteX (+ xBounce) <<< modSpriteY (+ yBounce) $ sprite
