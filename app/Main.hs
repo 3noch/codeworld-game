@@ -17,25 +17,25 @@ import Data.Foldable
 level1 =
   ["                                           ",
    "                                           ",
-   "                                           ",
+   "             3        ❤                    ",
    "                                           ",
    "T     TTTT      TTTTTTTTTTTTTTTTTTTTTTTTTTT",
    "T  q   TT       TTTTTTTTTTTTTTTT      TTTTTT",
    "T       T       TTTTTTTTTTTTTT           TT",
-   "T          P    TTTTTTTTTTTTTTT       2  TT",
+   "T          x    TTTTTTTTTTTTTTT   ❤   2  TT",
    "T               TTTTTTTTTTTTTTTTTTTT    TTT",
-   "T   P           TTTTTTTTTTTTTTTTT      TTTT",
+   "T   ❤           TTTTTTTTTTTTTTTTT      TTTT",
    "WWWWWWWWWWWWW WWWWWWWWWWWWWWWWWWWWWW    WWW",
    "WWWWWWWWWWWWW WWWWWWWWWWWWWWWWWWWWW  WWWWWW",
    "WWWWWWWWWWWWW WWWWWWWWWWWWWWWWWWWW  WWWWWWW",
    "WWWWWWWWWWWWW WWWWWWWWWWWWWWWWWWW  WWWWW",
    "WWWWWWWWWW      WWWWWWWWWWWWWWW   WWWWWW",
    "WWWWWWWWWW      WWWWWWWWWWWWWWW WWWWWWWW",
-   "WWWWWWWWWW  T                     WWWWWW",
+   "WWWWWWWWWW  T        x            WWWWWW",
    "WWWWWWWWWW      WWWWWWWWWWWWWWWWWWWWWWWW",
-   "WWWWWWWWWWWLLLLLLLLLWWWWWWWWWWWWWWWWWWWW",
-   "WWWWWWWWWWWLLLLLLLLLWWWWWWWWWWWWWWWWWWWW",
-   "WWWWWWWWWLLLL     WWWWWWWWWWWWWWWWWWWWWW",
+   "WWWWWWWWWWW         WWWWWWWWWWWWWWWWWWWW",
+   "WWWWWWWWWWW         WWWWWWWWWWWWWWWWWWWW",
+   "WWWWWWWWW      ❤   WWWWWWWWWWWWWWWWWWWWWW",
    "WWWWWWWWWWWWWWWW               WWWWWWWWWW",
    "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWW    WWWWWWW",
    "WWWWWWWWWWWWWWWWWWWWWWWWWWWWW     WWWWWWWW",
@@ -49,19 +49,19 @@ level2 =
    "LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL",
    "LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL",
    "LLLLLLLLLLLLLLLL                                        LLLLLLLLLLLLLLLLLLLLL",
-   "LLLLLLLLLLLLLLLL                                        LLLLLLLLLLLLLLLLLLLLL",
+   "LLLLLLLLLLLLLLLL                 ❤                      LLLLLLLLLLLLLLLLLLLLL",
    "LLLLLLLLLLLLLLLL          TTTTT                         LLLLLLLLLLLLLLLLLLLLL",
-   "LLLLLLLLLLLLLLLL              T                         LLLLLLLLLLLLLLLLLLLLL",
+   "LLLLLLLLLLLLLLLL              T              ❤          LLLLLLLLLLLLLLLLLLLLL",
    "LLLLLLLLLLLLLLLL           1  T                         LLLLLLLLLLLLLLLLLLLLL",
    "LLLLLLLLLLLLLLLL              T                         LLLLLLLLLLLLLLLLLLLLL",
    "LLLLLLLLLLLLLLLL        TTTTTTT                         LLLLLLLLLLLLLLLLLLLLL",
    "LLLLLLLLLLLLLLLL                                        LLLLLLLLLLLLLLLLLLLLL",
    "LLLLLLLLLLLLLLLL                                        LLLLLLLLLLLLLLLLLLLLL",
    "LLLLLLLLLLLLLLLL                                        LLLLLLLLLLLLLLLLLLLLL",
-   "LLLLLLLLLLLLLLLL                                        LLLLLLLLLLLLLLLLLLLLL",
-   "LLLLLLLLLLLLLLLL                                        LLLLLLLLLLLLLLLLLLLLL",
-   "LLLLLLLLLLLLLLLL                     T                  LLLLLLLLLLLLLLLLLLLLL",
-   "LLLLLLLLLLLLLLLL                                        LLLLLLLLLLLLLLLLLLLLL",
+   "LLLLLLLLLLLLLLLL       x                                LLLLLLLLLLLLLLLLLLLLL",
+   "LLLLLLLLLLLLLLLL       x                                LLLLLLLLLLLLLLLLLLLLL",
+   "LLLLLLLLLLLLLLLL       x             T                  LLLLLLLLLLLLLLLLLLLLL",
+   "LLLLLLLLLLLLLLLL       x                                LLLLLLLLLLLLLLLLLLLLL",
    "LLLLLLLLLLLLLLLL                                        LLLLLLLLLLLLLLLLLLLLL",
    "LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL",
    "LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL",
@@ -69,6 +69,33 @@ level2 =
    "LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL",
    "LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL",
    "LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL"]
+
+level3 =
+  [
+   "ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg",
+   "ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg",
+   "ggggggggggggggggggggggg❤ggggggggggggggggggggggggggggggggggggggggggggggggggggg",
+   "ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg",
+   "ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg",
+   "ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg",
+   "                                TTTTTTTTT                                    ",
+   "                                T T   ❤ T                                   ",
+   "                                T T     T             ❤                     ",
+   "                                T       T                                    ",
+   "ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+   "LLLLLLdLLLLLLLLLLLLLLLLLLLLLLLLLLdLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLdLLLLLLLLLL",
+   "LLLLLLdLLLLLLLLLLLLLLLLLLLLLLLLLLdLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLdLLLLLLLLLL",
+   "LLLLLLdLLLLLLLLLLLLLLLLLLLLLLLLLLdLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLdLLLLLLLLLL",
+   "ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+   "ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg",
+   "ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg",
+   "WWWWWWWWWWWWWWWWWWWWWWWWWggggggWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+   "WWWWWWWWWWWWWWWWWWWWWWWWWggggggWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+   "WWWWWWWWWWWWWWWWWWWWWWWWWggggggWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+   "WWWWWWWWWWWWWWWWWWWWWWWWWggggggWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+   "WWWWWWWWWWWWWWWWWWWWWWWWWggggggWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+   " 1                                                        ❤❤             2  "
+   ]
 
 data Thing = Thing {
     thingPic :: Picture,
@@ -81,8 +108,7 @@ data Thing = Thing {
 
 data CollisionBehavior
   = CollisionBlock
-  | CollisionDamage Double
-  | CollisionApply (World -> World)
+  | CollisionApply (World -> World) Bool
 
 data Sprite = Sprite {
     spriteThing :: Thing,
@@ -115,9 +141,10 @@ data LocationContent = LocationContent {
     locationContentThings :: [Thing]
   }
 
-data Rect a = Rect { rectLeft :: a, rectTop :: a, rectRight :: a, rectBottom :: a }
+data Rect a = Rect { rectLeft :: a, rectTop :: a, rectRight :: a, rectBottom :: a } deriving Eq
 rectCenterX (Rect l _ r _) = l + abs (l - r) / 2
 rectCenterY (Rect _ t _ b) = t - abs (b - t) / 2
+rectArea (Rect l t r b) = abs (r - l) * abs (b - t)
 (.+) (x, y) (Rect l t r b) = Rect (l + x) (t + y) (r + x) (b + y)
 
 mapInsert :: Double -> Double -> Thing -> Map (Double, Double) LocationContent -> Map (Double, Double) LocationContent
@@ -128,10 +155,11 @@ mapInsert x y thing = Map.insertWith
   (y, x)
   (if thingOpaque thing then LocationContent (Just thing) [] else LocationContent Nothing [thing])
 
-main = activityOf world0 handle draw
+main = activityOf world0 update draw
 
 level1Area = mkArea grass $ areaStr level1
 level2Area = mkArea dirt $ areaStr level2
+level3Area = mkArea dirt $ areaStr level3
 
 world0 = World {
     worldPlayer = Sprite person 0 10 0 0 5 4 MovementLogicStationary,
@@ -146,24 +174,37 @@ water = (mkThing "Water" "https://github.com/3noch/codeworld-game/raw/main/img/w
 lava = (mkThing "Lava" "https://github.com/3noch/codeworld-game/raw/main/img/lava.png" 1.1 1.1) {
     thingCollisionRect = Just $ Rect 0 0 1 1,
     thingOpaque = True,
-    thingCollisionBehavior = CollisionApply $ modPlayer $ \s -> s { spriteHealth = max 0 (spriteHealth s - 0.1) }
+    thingCollisionBehavior = CollisionApply (modPlayer (\p -> p { spriteHealth = max 0 (spriteHealth p - 0.05) })) False
   }
 squirtle = (mkThing "Squirtle" "https://github.com/3noch/codeworld-game/raw/main/img/squirtle.png" 1 1) {
-    thingCollisionBehavior = CollisionApply $ modPlayer $ \s -> s { spriteHealth = min 5 (spriteHealth s + 0.1), spriteMaxVelocity = 5 }
+    thingCollisionBehavior = CollisionBlock
+  }
+heart = (mkThing "Mushroom" "https://github.com/3noch/codeworld-game/raw/main/img/heart.png" 0.5 0.5) {
+    thingCollisionBehavior = CollisionApply (modPlayer (\p -> p { spriteHealth = min 8 (spriteHealth p + 3) })) True
   }
 heartImg = image "Heart" "https://github.com/3noch/codeworld-game/raw/main/img/heart.png" 1 1
+baddy = (mkThing "Baddy" "https://github.com/3noch/codeworld-game/raw/main/img/lava.png" 1 1) {
+    thingPic = solidCircle 0.5,
+    thingCollisionBehavior = CollisionApply (modPlayer (\p -> p { spriteHealth = max 0 (spriteHealth p - 0.02) })) False
+  }
 
 person = (mkThing "Person" "https://github.com/3noch/codeworld-game/raw/main/img/player.png" 1 1) { thingCollisionRect = Just (Rect 0.1 (-0.3) 0.8 (-0.7)) }
 
-portalTo level x y = Thing (solidRectangle 1 1) 1 1 True (Just (Rect 0 0 1 1)) (CollisionApply $ \w -> modPlayerLoc (const x) (const y) $ (w { worldMap = level }))
+portalTo level x y = Thing (solidRectangle 1 1) 1 1 True (Just (Rect 0 0 1 1)) (CollisionApply (\w -> modPlayerLoc (const x) (const y) $ (w { worldMap = level })) False)
 
+parseMapChar 'd' = Just $ Right dirt
+parseMapChar 'g' = Just $ Right grass
 parseMapChar 'T' = Just $ Right tree1
 parseMapChar 'W' = Just $ Right water
+parseMapChar 'w' = Just $ Right water
 parseMapChar 'L' = Just $ Right lava
-parseMapChar 'P' = Just $ Left $ Sprite person 0 0 0 0 5 3 MovementLogicStationary --MovementLogicGoToPlayer
+parseMapChar 'P' = Just $ Left $ Sprite person 0 0 0 0 5 3 MovementLogicStationary
 parseMapChar 'q' = Just $ Left $ Sprite squirtle 0 0 0 0 5 4 MovementLogicStationary
-parseMapChar '2' = Just $ Right $ portalTo level2Area 0 0
+parseMapChar '❤' = Just $ Left $ Sprite heart 0 0 0 0 0 0 MovementLogicStationary
+parseMapChar 'x' = Just $ Left $ Sprite baddy 0 0 0 0 5 3 MovementLogicGoToPlayer
 parseMapChar '1' = Just $ Right $ portalTo level1Area 0 10
+parseMapChar '2' = Just $ Right $ portalTo level2Area 0 0
+parseMapChar '3' = Just $ Right $ portalTo level3Area (-15) (-5)
 parseMapChar _ = Nothing
 
 areaStr str = map (map parseMapChar) str
@@ -183,11 +224,15 @@ mkArea defaultTile rows = foldl' (\m (x, y, maybeThing) -> maybe m (add m x y) m
 mkThing :: Text -> Text -> Double -> Double -> Thing
 mkThing name url w h = Thing (image name url w h) w h False (Just $ Rect 0 0 w (-h)) CollisionBlock
 
-draw world = frameRate & healthHearts & translated (-rectCenterX viewPort) (-rectCenterY viewPort) (pictures things & pictures tiles) & solidRectangle 20 20
+draw world | spriteHealth (worldPlayer world) > 0 = drawAlive world
+draw _ = drawDead
+
+drawDead = colored white (lettering "Game Over" & translated 0 (-5) (dilated 0.5 (lettering "press Escape to restart"))) & solidRectangle 40 40
+drawAlive world = frameRate & healthHearts & translated (-rectCenterX viewPort) (-rectCenterY viewPort) (pictures things & pictures tiles) & solidRectangle 20 20
   where
     mapRect = boundingRect (0, 0) $ Rect 0 0 (fromIntegral $ areaWidth $ worldMap world) (fromIntegral $ areaHeight $ worldMap world)
     viewPort = limitViewPort mapRect (boundingRect (playerX, playerY) $ Rect 0 0 20 20)
-    inViewPort (x, y) thing = overlapping viewPort $ boundingRect (x, y) $ Rect 0 0 (thingWidth thing) (thingHeight thing)
+    inViewPort (x, y) thing = isOverlapping viewPort $ boundingRect (x, y) $ Rect 0 0 (thingWidth thing) (thingHeight thing)
     tileViewPort = tileRect viewPort
     tiles = [ translated x y $ thingPic thing
             | x <- [rectLeft tileViewPort..rectRight tileViewPort], y <- [rectTop tileViewPort, rectTop tileViewPort-1..rectBottom tileViewPort]
@@ -227,14 +272,15 @@ tileRect (Rect l t r b) = Rect (fromIntegral $ floor l) (fromIntegral $ ceiling 
 collision1 :: Rect Double -> Rect Double -> (Double, Double)
 collision1 rect1@(Rect l0 t0 r0 b0) rect2@(Rect l1 t1 r1 b1) = if colliding then adjustment else (0, 0)
   where
-    colliding = overlapping rect1 rect2
+    colliding = isOverlapping rect1 rect2
     leastChange = minimumBy (\(a, _) (b, _) -> abs a `compare` abs b)
       [(l1 - r0, False), (r1 - l0, False), (b1 - t0, True), (t1 - b0, True)]
     adjustment = case leastChange of
       (x, False) -> (x, 0)
       (y, True) -> (0, y)
 
-overlapping (Rect l0 t0 r0 b0) (Rect l1 t1 r1 b1) = l0 < r1 && r0 > l1 && t0 > b1 && b0 < t1
+isOverlapping (Rect l0 t0 r0 b0) (Rect l1 t1 r1 b1) = l0 < r1 && r0 > l1 && t0 > b1 && b0 < t1
+rectOverlap a@(Rect l0 t0 r0 b0) b@(Rect l1 t1 r1 b1) = if isOverlapping a b then Just (Rect (max l0 l1) (min t0 t1) (min r0 r1) (max b0 b1)) else Nothing
 
 boundingRect :: (Double, Double) -> Rect Double -> Rect Double
 boundingRect (x, y) (Rect l t r b) = Rect l' t' (l' + w) (t' - h)
@@ -247,16 +293,19 @@ boundingRect (x, y) (Rect l t r b) = Rect l' t' (l' + w) (t' - h)
 buildCollisions :: Rect Double -> [(Double, Double, LocationContent)] -> (Double, Double, World -> World)
 buildCollisions r m = applyCollisionsTo r
   where
-    foundCollisions = filter (\(rect1, _) -> overlapping r rect1) $ collisionRects m
-    applyCollisionsTo rect = foldl' (doCollision rect) (0, 0, id) foundCollisions
-    doCollision rect0 (x0, y0, f) (rect1, behavior) = case behavior of
-      CollisionApply eff | x1 /= 0 || y1 /= 0 -> (x0, y0, eff >>> f)
-      CollisionBlock -> (biggestMag x0 x1, biggestMag y0 y1, f)
-      _ -> (x0, y0, f)
+    foundCollisions = mapMaybe (\(rect, x) -> fmap (\overlap -> (overlap, rect, x)) $ rectOverlap rect r) $ collisionRects m
+    sortedCollisions = sortOn (\(overlap, _, _) -> negate $ rectArea overlap) foundCollisions
+    applyCollisionsTo rect = foldl' (doCollision rect) (0, 0, id) sortedCollisions
+    doCollision rect0 (x, y, f) (_, rect1, behavior) = case behavior of
+      CollisionApply eff removeSprite | x' /= 0 || y' /= 0 -> (x, y, if removeSprite then eff >>> doRemoveSprite rect1 >>> f else eff >>> f)
+      CollisionBlock -> (x + x', y + y', f)
+      _ -> (x, y, f)
       where
-        (x1, y1) = collision1 rect0 rect1
-    biggestMag a b = if abs a > abs b then a else b
-    
+        (x', y') = collision1 ((x, y) .+ rect0) rect1
+    removeSpriteWithRect rect = filter (\sprite -> spriteCollisionRect sprite /= rect)
+
+    doRemoveSprite rect world = world { worldMap = (worldMap world) { areaSprites = removeSpriteWithRect rect (areaSprites (worldMap world)) } }
+
     collisionRects :: [(Double, Double, LocationContent)] -> [(Rect Double, CollisionBehavior)]
     collisionRects xs = [(boundingRect (x, y) colRect, thingCollisionBehavior thing) | (x, y, LocationContent tile things) <- xs, thing <- maybeToList tile ++ things, Just colRect <- [thingCollisionRect thing]]
 
@@ -268,7 +317,12 @@ drawRect (Rect l t r b) = polyline points
 round' :: Double -> Double
 round' x = fromIntegral (round (x * 10) :: Int) / 10
 
+update (KeyPress "Esc") w = world0
+update event w | spriteHealth (worldPlayer w) > 0 = handle event w
+update _ w = w
+
 handle event = case event of
+  KeyPress "Esc" -> \_ -> world0
   KeyPress "Up" -> modPlayerVelocityY (+)
   KeyRelease "Up" -> modPlayerVelocityY (-)
   KeyPress "Down" -> modPlayerVelocityY (-)
@@ -281,7 +335,7 @@ handle event = case event of
     let
       getCollision sprite sprites = buildCollisions (spriteCollisionRect sprite) [(x, y, loc) | ((y, x), loc) <- Map.toAscList (mkAreaThings $ (worldMap world) { areaSprites = sprites })]
       doCollision sprites sprite =
-        let (xBounce, yBounce, worldEffect) = getCollision sprite (filter (\x -> (spriteX x, spriteY x) /= (spriteX sprite, spriteY sprite)) sprites) in
+        let (xBounce, yBounce, _) = getCollision sprite (filter (\x -> (spriteX x, spriteY x) /= (spriteX sprite, spriteY sprite)) sprites) in
         modSpriteX (+ xBounce) <<< modSpriteY (+ yBounce) $ sprite
       movedSprites = map (updateSpriteMovement dt (worldPlayer world)) $ areaSprites $ worldMap world
       collidedSprites = map (doCollision movedSprites) movedSprites
@@ -317,6 +371,3 @@ modSpriteVelocityY f s = s { spriteVelocityY = f (spriteVelocityY s) }
 modSpriteX f s = s { spriteX = f (spriteX s) }
 modSpriteY f s = s { spriteY = f (spriteY s) }
 moveSprite dt s = s { spriteX = spriteX s + spriteVelocityX s * dt, spriteY = spriteY s + spriteVelocityY s * dt }
-
-infixl 1 .
-(.) = (Func.&)
