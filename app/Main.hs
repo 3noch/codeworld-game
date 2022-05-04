@@ -17,15 +17,11 @@ main = activityOf world0 update draw
 
 world0 = World {
     worldPlayer = Sprite person 0 10 0 0 5 4 MovementLogicStationary,
-    worldArea = level1Area,
+    worldArea = level1,
     worldDt = 0
   }
 
-level1Area = mkArea grass $ areaStr level1
-level2Area = mkArea dirt $ areaStr level2
-level3Area = mkArea dirt $ areaStr level3
-
-level1 =
+level1' = mkArea grass $ areaStr
   ["                                           ",
    "                                           ",
    "             3        ❤                    ",
@@ -54,7 +50,7 @@ level1 =
    "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
    "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW"]
 
-level2 =
+level2' = mkArea dirt $ areaStr
   ["LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL",
    "LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL",
    "LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL",
@@ -81,7 +77,7 @@ level2 =
    "LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL",
    "LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL"]
 
-level3 =
+level3' = mkArea dirt $ areaStr
   [
    "ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg",
    "ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg",
@@ -108,6 +104,99 @@ level3 =
    " 1                                                        ❤❤             2  "
   ]
 
+level1 = mkArea grass $ areaStr
+   ["T   q                q  F    q    q    WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWw",
+    "T          21                                       q                       w",
+    "TTTTTTTTD    F    DDD         DTTDTTTTWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW  T",
+    "TDTDTTDTD        DDDDD        DTDDTDTTWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW D",
+    "TTTTTDTTD   P   DDWDWDD       DTTDDTTTWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW  T",
+    "TTTTTTTTD      DDWWDWWDD      DDTDDTTTWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW T",
+    "TTDTTTTTD     DDWWWDWWWDD  q   DTTDDDTTTWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW W",
+    "TTTTDTTTD    DDWWWWDWWWWDD    DTTTDDTDDWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW W",
+    "TTTTTDTTD   DDWWWWWDWWWWWDD   DTTT DDDDWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW W", 
+    "TTDTTTTTD  DDWWWWWWDWWWWWWDD  DDDDDDDDD    q WWWWWWWWWWWWWWWWWWWWWWWWWWWWWW T",
+    "TTTTTDDTD DDWWWWWWWDWWWWWWWDD DDDDDDDDD        WWWWWWWWWWWWWWWWWWWWWWWWWWWW W",   
+    "TTTTTTTTDDDWWWWWWWWDWWWWWWWWDDDTTTDTTDT     H                               W",
+    "TTTDTTTTDDDDDDDDDDDDDDDDDDDDDDDTTTDTTTT         WWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+    "TTTTDTDTDDDWWWWWWWWDWWWWWWWWDDDDTTTTTTTWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+    "TTDTTTTTD DDWWWWWWWDWWWWWWWDD DTTTTTDTTWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+    "TTTTTDTTD  DDWWWWWWDWWWWWWDD  DTTTTDTTTWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+    "DDDDDDDDD   DDWWWWWDWWWWWDDq  DDDDDDDDDWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+    "D  L         DDWWWWDWWWWDD         L 2 WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+    "D  P        q DDWWWDWWWDD q        P  DWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+    "TTTTTTTTD      DDWWDWWDD      DTDTDTTTTWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+    "TTDTTDTTD       DDWDWDD       DTDTTTTDTWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+    "TTTTDTTTD        DDDDD    q   DTDTTTDTTWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+    "TTTTTTDTD         DDD         DTTTTDTTTWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+    "TTDTTTTTD   F     q     q     DTDTTTDTTWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+    "TTTTTTTTD                     DTTTDTTTTWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+    "TTDTDTTTD                     DDTTTTDTTWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+    "DTTTTDTTD  q           1       DTTTTDTTTWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+    "TTTTTTTTD      H       q      DTDTTTTTTWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+    "TTDTTDTTD                     DTTTTTDTTWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+    "TTTTTTTTD         F        P  DTTDTTTTTWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+    "TTTTDTTTD  q     2      q     DTTTTDTTTWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+    "TTTTTTTTD                     DDTTTTTTTWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+    "TTDTTTTTDLD   LD   DL   LD  DLTTTTTTTTTWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+    "TTTTTTDTDLD DLD DLD DLDDLD DLDTTTTTTTTTWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+    "TTTTTTTTDDLDLDLDLDLDLDLDLDLDLDDTTTTTTTTWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+    "TTTTTTTTTLLLLLLLLLLLLLLLLLLLLLTTTTTTTTTWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+    "DLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLDWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW"]
+
+level2 = mkArea dirt $ areaStr
+  ["LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL",
+   "LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL",
+   "LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL",
+   "LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL                LLLLLLLLL",
+   "LLLLLLLLLLLLLLLL                 q       q   q          LLLLLLLLLLL LLLLLLLLL",
+   "LLLLLLLLLLLLLLLL                     q                  LLLLLLLLLLL LLLLLLLLL",
+   "LLLLLLLLLLLLLLLL          TTTTT          q   q    F     LLLLLLLLLLL LLLLLLLLL",
+   "LLLLLLLLLLLLLLLL              TW     q            F     LLLLLLLLLLL LLLLLLLLL",
+   "LLLLLLLLLLLLLLLL           1  TWWWW      q   q    F     LLLLLLLLLLL LLLLLLLLL",
+   "LLLLLLLLLLLLLLLL              TWWW                F     LLLLLLLLLLL LLLLLLLLL",
+   "LLLLLLLLLLLLLLLL        TTTTTTT WWW               F     LLLLLLLLLLL LLLLLLLLL",
+   "LLLLLLLLLLLLLLLL                W WW              F     LLLLLLLLLLL LLLLLLLLL",
+   "LLLLLLLLLLLLLLLL                W  W             HF     LLLLLLLLLLL  LLLLLLLL",
+   "LLLLLLLLLLLLLLLL                T  T              F     LLLLLLLLLLLL 2qLLLLLL",
+   "LLLLLLLLLLLLLLLL            3              M      F     LLLLLLLLLLLLL HLLLLLL",
+   "LLLLLLLLLLLLLLLL                                  F     LLLLLLLLLLLLL  LLLLLL",
+   "LLLLLLLLLLLLLLLL                     T            F     LLLLLLLLLLLLLL LLLLLL",
+   "LLLLLLLLLLLLLLLL          M                       F                    LLLLLL",
+   "LLLLLLLLLLLLLLLL                                  F     LLLLLLLLLLLLLLLLLLLLL",
+   "LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL",
+   "LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL",
+   "LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL",
+   "LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL",
+   "LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL",
+   "LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL"]
+   
+level3 = mkArea dirt $ areaStr
+  ["LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL",
+   "LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL",
+   "LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL",
+   "LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL                LLLLLLLLL",
+   "LLLLLLLLLLLLLLLL                 q       q   q          LLLLLLLLLLL LLLLLLLLL",
+   "LLLLLLLLLLLLLLLL                     q                  LLLLLLLLLLL LLLLLLLLL",
+   "LLLLLLLLLLLLLLLL          TTTTT          q   q    F     LLLLLLLLLLL LLLLLLLLL",
+   "LLLLLLLLLLLLLLLL              TW     q            F     LLLLLLLLLLL LLLLLLLLL",
+   "LLLLLLLLLLLLLLLL           1  TWWWW      q   q    F     LLLLLLLLLLL LLLLLLLLL",
+   "LLLLLLLLLLLLLLLL              TWWW                F     LLLLLLLLLLL LLLLLLLLL",
+   "LLLLLLLLLLLLLLLL        TTTTTTT WWW               F     LLLLLLLLLLL LLLLLLLLL",
+   "LLLLLLLLLLLLLLLL                W WW              F     LLLLLLLLLLL LLLLLLLLL",
+   "LLLLLLLLLLLLLLLL                W  W             HF     LLLLLLLLLLL  LLLLLLLL",
+   "LLLLLLLLLLLLLLLL                T  T              F     LLLLLLLLLLLL 2qLLLLLL",
+   "LLLLLLLLLLLLLLLL            3                     F     LLLLLLLLLLLLL HLLLLLL",
+   "LLLLLLLLLLLLLLLL                                  F     LLLLLLLLLLLLL  LLLLLL",
+   "LLLLLLLLLLLLLLLL                     T            F     LLLLLLLLLLLLLL LLLLLL",
+   "LLLLLLLLLLLLLLLL                                  F                    LLLLLL",
+   "LLLLLLLLLLLLLLLL                                  F     LLLLLLLLLLLLLLLLLLLLL",
+   "LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL",
+   "LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL",
+   "LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL",
+   "LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL",
+   "LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL",
+   "LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL"]
+
 tree1 = (mkThing "Tree" "https://github.com/3noch/codeworld-game/raw/main/img/tree1.png" 2 3) { thingCollisionRect = Just (Rect 0.4 (-0.8) 1.2 (-3)) }
 grass = (mkThing "Grass" "https://github.com/3noch/codeworld-game/raw/main/img/grass.png" 1.1 1.1) { thingOpaque = True, thingCollisionRect = Nothing }
 dirt = (mkThing "Dirt" "https://github.com/3noch/codeworld-game/raw/main/img/dirt.png" 1.1 1.1) { thingOpaque = True, thingCollisionRect = Nothing }
@@ -115,37 +204,47 @@ water = (mkThing "Water" "https://github.com/3noch/codeworld-game/raw/main/img/w
 lava = (mkThing "Lava" "https://github.com/3noch/codeworld-game/raw/main/img/lava.png" 1.1 1.1) {
     thingCollisionRect = Just $ Rect 0 0 1 1,
     thingOpaque = True,
-    thingCollisionBehavior = CollisionApply (modPlayer (\p -> p { spriteHealth = max 0 (spriteHealth p - 0.05) })) False
+    thingCollisionBehavior = CollisionApply (applyToPlayer (\dt p -> p{ spriteHealth = max 0 (spriteHealth p - 5 * dt) })) False
   }
 squirtle = (mkThing "Squirtle" "https://github.com/3noch/codeworld-game/raw/main/img/squirtle.png" 1 1) {
-    thingCollisionBehavior = CollisionBlock
+    thingCollisionBehavior = CollisionApply (applyToPlayer (\dt p -> p{ spriteHealth = min 8 (spriteHealth p + 2 * dt) })) False
   }
 heart = (mkThing "Mushroom" "https://github.com/3noch/codeworld-game/raw/main/img/heart.png" 0.5 0.5) {
-    thingCollisionBehavior = CollisionApply (modPlayer (\p -> p { spriteHealth = min 8 (spriteHealth p + 3) })) True
+    thingCollisionBehavior = CollisionApply (applyToPlayer (\dt p -> p{ spriteHealth = min 8 (spriteHealth p + 3) })) True
   }
 heartImg = image "Heart" "https://github.com/3noch/codeworld-game/raw/main/img/heart.png" 1 1
 baddy = (mkThing "Baddy" "https://github.com/3noch/codeworld-game/raw/main/img/lava.png" 1 1) {
     thingPic = solidCircle 0.5,
-    thingCollisionBehavior = CollisionApply (modPlayer (\p -> p { spriteHealth = max 0 (spriteHealth p - 0.02) })) False
+    thingCollisionBehavior = CollisionApply (applyToPlayer (\dt p -> p{ spriteHealth = max 0 (spriteHealth p - 2 * dt) })) False
+  }
+fright = (mkThing "fright" "https://github.com/3noch/codeworld-game/raw/main/img/fright.png" 1 1) {
+    thingPic = colored red (solidCircle 0.6),
+    thingCollisionBehavior = CollisionApply (applyToPlayer (\dt p -> p{ spriteHealth = max 0 (spriteHealth p - 5 * dt)})) False
+  }
+mushroom = (mkThing "mushroom" "https://github.com/3noch/codeworld-game/raw/main/img/mushroom.png" 0.5 0.5) {
+    thingCollisionBehavior = CollisionApply (applyToPlayer (\dt p -> p{spriteMaxVelocity = spriteMaxVelocity p + 0.5 * dt})) True
   }
 
 person = (mkThing "Person" "https://github.com/3noch/codeworld-game/raw/main/img/player.png" 1 1) { thingCollisionRect = Just (Rect 0.1 (-0.3) 0.8 (-0.7)) }
 
-portalTo level x y = Thing (solidRectangle 1 1) 1 1 True (Just (Rect 0 0 1 1)) (CollisionApply (\w -> modPlayerLoc (const x) (const y) w{worldArea = level}) False)
+portalTo level x y = Thing (solidRectangle 1 1) 1 1 True (Just (Rect 0 0 1 1)) (CollisionApply (\_ w -> modPlayerLoc (const x) (const y) w{worldArea = level}) False)
 
 parseMapChar 'd' = Just $ Right dirt
+parseMapChar 'D' = Just $ Right dirt
 parseMapChar 'g' = Just $ Right grass
 parseMapChar 'T' = Just $ Right tree1
 parseMapChar 'W' = Just $ Right water
 parseMapChar 'w' = Just $ Right water
 parseMapChar 'L' = Just $ Right lava
 parseMapChar 'P' = Just $ Left $ Sprite person 0 0 0 0 5 3 MovementLogicStationary
-parseMapChar 'q' = Just $ Left $ Sprite squirtle 0 0 0 0 5 4 MovementLogicStationary
+parseMapChar 'q' = Just $ Left $ Sprite squirtle 0 0 0 0 5 2 MovementLogicFleePlayer
 parseMapChar '❤' = Just $ Left $ Sprite heart 0 0 0 0 0 0 MovementLogicStationary
+parseMapChar 'H' = Just $ Left $ Sprite heart 0 0 0 0 0 0 MovementLogicStationary
 parseMapChar 'x' = Just $ Left $ Sprite baddy 0 0 0 0 5 3 MovementLogicGoToPlayer
-parseMapChar '1' = Just $ Right $ portalTo level1Area 0 10
-parseMapChar '2' = Just $ Right $ portalTo level2Area 0 0
-parseMapChar '3' = Just $ Right $ portalTo level3Area (-15) (-5)
+parseMapChar 'F' = Just $ Left $ Sprite fright 0 0 0 0 5 2 MovementLogicGoToPlayer
+parseMapChar '1' = Just $ Right $ portalTo level1 0 10
+parseMapChar '2' = Just $ Right $ portalTo level2 0 0
+parseMapChar '3' = Just $ Right $ portalTo level3 (-15) (-5)
 parseMapChar _ = Nothing
 
 draw world | spriteHealth (worldPlayer world) > 0 = drawAlive world
@@ -209,7 +308,7 @@ mkThing name url w h = Thing (image name url w h) w h False (Just $ Rect 0 0 w (
 
 data CollisionBehavior
   = CollisionBlock
-  | CollisionApply (World -> World) Bool
+  | CollisionApply (Double -> World -> World) Bool
 
 data Sprite = Sprite {
     spriteThing :: Thing,
@@ -221,7 +320,7 @@ data Sprite = Sprite {
     spriteMaxVelocity :: Double,
     spriteMovement :: MovementLogic
   }
-data MovementLogic = MovementLogicStationary | MovementLogicGoToPlayer
+data MovementLogic = MovementLogicStationary | MovementLogicGoToPlayer | MovementLogicFleePlayer
 
 data World = World {
     worldPlayer :: Sprite,
@@ -293,21 +392,21 @@ collision1 rect1@(Rect l0 t0 r0 b0) rect2@(Rect l1 t1 r1 b1) = if colliding then
       (x, False) -> (x, 0)
       (y, True) -> (0, y)
 
-buildCollisions :: Rect Double -> Map (Int, Int) LocationContent -> (Double, Double, World -> World)
+buildCollisions :: Rect Double -> Map (Int, Int) LocationContent -> (Double, Double, Double -> World -> World)
 buildCollisions r m = applyCollisionsTo r
   where
     foundCollisions = mapMaybe (\(rect, x) -> (, rect, x) <$> rectOverlap rect r) $ collisionRects nearbyThings
     sortedCollisions = sortOn (\(overlap, _, _) -> negate $ rectArea overlap) foundCollisions
-    applyCollisionsTo rect = foldl' (doCollision rect) (0, 0, id) sortedCollisions
+    applyCollisionsTo rect = foldl' (doCollision rect) (0, 0, \_ w -> w) sortedCollisions
     doCollision rect0 (x, y, f) (_, rect1, behavior) = case behavior of
-      CollisionApply eff removeSprite | x' /= 0 || y' /= 0 -> (x, y, if removeSprite then eff >>> doRemoveSprite rect1 >>> f else eff >>> f)
+      CollisionApply eff removeSprite | x' /= 0 || y' /= 0 -> (x, y, \dt -> if removeSprite then eff dt >>> doRemoveSprite rect1 dt >>> f dt else eff dt >>> f dt)
       CollisionBlock -> (x + x', y + y', f)
       _ -> (x, y, f)
       where
         (x', y') = collision1 ((x, y) .+ rect0) rect1
     removeSpriteWithRect rect = filter (\sprite -> spriteCollisionRect sprite /= rect)
 
-    doRemoveSprite rect world = world{worldArea = (worldArea world){areaSprites = removeSpriteWithRect rect (areaSprites (worldArea world))}}
+    doRemoveSprite rect _ world = world{worldArea = (worldArea world){areaSprites = removeSpriteWithRect rect (areaSprites (worldArea world))}}
 
     collisionRects :: [((Double, Double), Thing)] -> [(Rect Double, CollisionBehavior)]
     collisionRects things = [(boundingRect (x, y) colRect, thingCollisionBehavior thing) | ((y, x), thing) <- things, colRect <- maybeToList $ thingCollisionRect thing]
@@ -316,10 +415,10 @@ buildCollisions r m = applyCollisionsTo r
     nearbyThings =
       [ thing
       | xOffset <- [-1, 0, 1]
-      , yOffset <- [-1, 0, 1]
-      , let (x, y) = (rectX + xOffset, rectY + yOffset)
-      , LocationContent tile things <- maybeToList $ Map.lookup (floor y, floor x) m
-      , thing <- maybeToList (((y, x),) <$> tile) ++ things
+      , yOffset <- [-1, 0, 1, 2]
+      , let (x, y) = (floor $ rectX + xOffset, floor $ rectY + yOffset)
+      , LocationContent tile things <- maybeToList $ Map.lookup (y, x) m
+      , thing <- maybeToList (((fromIntegral y, fromIntegral x),) <$> tile) ++ things
       ]
 
 drawRect :: Rect Double -> Picture
@@ -353,7 +452,7 @@ handle event = case event of
       movedPlayer = moveSprite dt $ worldPlayer world
       (xBounce, yBounce, worldEffect) = getCollision movedPlayer collidedSprites
       updateWorld w = w{worldDt = dt, worldArea = (worldArea world){areaSprites = collidedSprites}, worldPlayer = movedPlayer}
-      applyCollision = modPlayerLoc (+ xBounce) (+ yBounce) >>> worldEffect
+      applyCollision = modPlayerLoc (+ xBounce) (+ yBounce) >>> worldEffect dt
     in
       updateWorld >>> applyCollision $ world
   _ -> id
@@ -365,16 +464,19 @@ handle event = case event of
 updateSpriteMovement dt player sprite = case spriteMovement sprite of
   MovementLogicStationary -> sprite
   MovementLogicGoToPlayer -> moveSprite dt $ sprite { spriteVelocityX = spriteVelocityX, spriteVelocityY = spriteVelocityY }
-    where
-      spriteVelocityX = cos angleToPlayer * spriteMaxVelocity sprite
-      spriteVelocityY = sin angleToPlayer * spriteMaxVelocity sprite
-      vecDiff = vectorDifference (spriteX player, spriteY player) (spriteX sprite, spriteY sprite)
-      angleToPlayer = vectorDirection vecDiff
+  MovementLogicFleePlayer -> if vecLength > 5 then sprite else moveSprite dt $ sprite { spriteVelocityX = -spriteVelocityX, spriteVelocityY = -spriteVelocityY }
+  where
+    spriteVelocityX = cos angleToPlayer * spriteMaxVelocity sprite
+    spriteVelocityY = sin angleToPlayer * spriteMaxVelocity sprite
+    vecDiff = vectorDifference (spriteX player, spriteY player) (spriteX sprite, spriteY sprite)
+    vecLength = vectorLength vecDiff
+    angleToPlayer = vectorDirection vecDiff
 
 spriteCollisionRect (Sprite thing x y _ _ _ _ _) = boundingRect (x, y) $ fromMaybe (Rect 0 0 (thingWidth thing) (thingHeight thing)) (thingCollisionRect thing)
 
 modPlayer f w = w { worldPlayer = f (worldPlayer w) }
 modPlayerLoc fx fy = modPlayer (modSpriteY fy) <<< modPlayer (modSpriteX fx)
+applyToPlayer f dt = modPlayer (f dt)
 modSpriteVelocityX f s = s { spriteVelocityX = f (spriteVelocityX s) }
 modSpriteVelocityY f s = s { spriteVelocityY = f (spriteVelocityY s) }
 modSpriteX f s = s { spriteX = f (spriteX s) }
