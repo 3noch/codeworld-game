@@ -18,18 +18,19 @@ main = activityOf world0 update draw
 world0 = World {
     worldPlayer = Sprite person 0 10 0 0 5 4 MovementLogicStationary,
     worldArea = level1,
-    worldDt = 0
+    worldDt = 0,
+    worldNumStars = 0
   }
 
-level1' = mkArea grass $ areaStr
+level1 = mkArea grass $ areaStr
   ["                                           ",
    "                                           ",
-   "             3        ❤                    ",
+   "             3        ❤         🌟          ",
    "                                           ",
    "T     TTTT      TTTTTTTTTTTTTTTTTTTTTTTTTTT",
    "T  q   TT       TTTTTTTTTTTTTTTT      TTTTTT",
-   "T       T       TTTTTTTTTTTTTT           TT",
-   "T          x    TTTTTTTTTTTTTTT   ❤   2  TT",
+   "T       T       TTTTTTTTTTTTTT    🌟      TT",
+   "T    b     x    TTTTTTTTTTTTTTT   ❤   2  TT",
    "T               TTTTTTTTTTTTTTTTTTTT    TTT",
    "T   ❤           TTTTTTTTTTTTTTTTT      TTTT",
    "WWWWWWWWWWWWW WWWWWWWWWWWWWWWWWWWWWW    WWW",
@@ -42,15 +43,15 @@ level1' = mkArea grass $ areaStr
    "WWWWWWWWWW      WWWWWWWWWWWWWWWWWWWWWWWW",
    "WWWWWWWWWWW         WWWWWWWWWWWWWWWWWWWW",
    "WWWWWWWWWWW         WWWWWWWWWWWWWWWWWWWW",
-   "WWWWWWWWW      ❤   WWWWWWWWWWWWWWWWWWWWWW",
+   "WWWWWWWWW   b  ❤   WWWWWWWWWWWWWWWWWWWWWW",
    "WWWWWWWWWWWWWWWW               WWWWWWWWWW",
    "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWW    WWWWWWW",
    "WWWWWWWWWWWWWWWWWWWWWWWWWWWWW     WWWWWWWW",
-   "WWWWWWWWWWWWWWWWWWWWWWWWWWW   q   WWWWWWW",
+   "WWWWWWWWWWWWWWWWWWWWWWWWWWW   🌟  WWWWWWW",
    "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
    "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW"]
 
-level2' = mkArea dirt $ areaStr
+level2 = mkArea dirt $ areaStr
   ["LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL",
    "LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL",
    "LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL",
@@ -77,7 +78,7 @@ level2' = mkArea dirt $ areaStr
    "LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL",
    "LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL"]
 
-level3' = mkArea dirt $ areaStr
+level3 = mkArea dirt $ areaStr
   [
    "ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg",
    "ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg",
@@ -104,99 +105,6 @@ level3' = mkArea dirt $ areaStr
    " 1                                                        ❤❤             2  "
   ]
 
-level1 = mkArea grass $ areaStr
-   ["T   q                q  F    q    q    WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWw",
-    "T          21                                       q                       w",
-    "TTTTTTTTD    F    DDD         DTTDTTTTWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW  T",
-    "TDTDTTDTD        DDDDD        DTDDTDTTWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW D",
-    "TTTTTDTTD   P   DDWDWDD       DTTDDTTTWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW  T",
-    "TTTTTTTTD      DDWWDWWDD      DDTDDTTTWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW T",
-    "TTDTTTTTD     DDWWWDWWWDD  q   DTTDDDTTTWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW W",
-    "TTTTDTTTD    DDWWWWDWWWWDD    DTTTDDTDDWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW W",
-    "TTTTTDTTD   DDWWWWWDWWWWWDD   DTTT DDDDWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW W", 
-    "TTDTTTTTD  DDWWWWWWDWWWWWWDD  DDDDDDDDD    q WWWWWWWWWWWWWWWWWWWWWWWWWWWWWW T",
-    "TTTTTDDTD DDWWWWWWWDWWWWWWWDD DDDDDDDDD        WWWWWWWWWWWWWWWWWWWWWWWWWWWW W",   
-    "TTTTTTTTDDDWWWWWWWWDWWWWWWWWDDDTTTDTTDT     H                               W",
-    "TTTDTTTTDDDDDDDDDDDDDDDDDDDDDDDTTTDTTTT         WWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
-    "TTTTDTDTDDDWWWWWWWWDWWWWWWWWDDDDTTTTTTTWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
-    "TTDTTTTTD DDWWWWWWWDWWWWWWWDD DTTTTTDTTWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
-    "TTTTTDTTD  DDWWWWWWDWWWWWWDD  DTTTTDTTTWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
-    "DDDDDDDDD   DDWWWWWDWWWWWDDq  DDDDDDDDDWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
-    "D  L         DDWWWWDWWWWDD         L 2 WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
-    "D  P        q DDWWWDWWWDD q        P  DWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
-    "TTTTTTTTD      DDWWDWWDD      DTDTDTTTTWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
-    "TTDTTDTTD       DDWDWDD       DTDTTTTDTWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
-    "TTTTDTTTD        DDDDD    q   DTDTTTDTTWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
-    "TTTTTTDTD         DDD         DTTTTDTTTWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
-    "TTDTTTTTD   F     q     q     DTDTTTDTTWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
-    "TTTTTTTTD                     DTTTDTTTTWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
-    "TTDTDTTTD                     DDTTTTDTTWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
-    "DTTTTDTTD  q           1       DTTTTDTTTWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
-    "TTTTTTTTD      H       q      DTDTTTTTTWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
-    "TTDTTDTTD                     DTTTTTDTTWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
-    "TTTTTTTTD         F        P  DTTDTTTTTWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
-    "TTTTDTTTD  q     2      q     DTTTTDTTTWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
-    "TTTTTTTTD                     DDTTTTTTTWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
-    "TTDTTTTTDLD   LD   DL   LD  DLTTTTTTTTTWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
-    "TTTTTTDTDLD DLD DLD DLDDLD DLDTTTTTTTTTWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
-    "TTTTTTTTDDLDLDLDLDLDLDLDLDLDLDDTTTTTTTTWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
-    "TTTTTTTTTLLLLLLLLLLLLLLLLLLLLLTTTTTTTTTWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
-    "DLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLDWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW"]
-
-level2 = mkArea dirt $ areaStr
-  ["LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL",
-   "LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL",
-   "LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL",
-   "LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL                LLLLLLLLL",
-   "LLLLLLLLLLLLLLLL                 q       q   q          LLLLLLLLLLL LLLLLLLLL",
-   "LLLLLLLLLLLLLLLL                     q                  LLLLLLLLLLL LLLLLLLLL",
-   "LLLLLLLLLLLLLLLL          TTTTT          q   q    F     LLLLLLLLLLL LLLLLLLLL",
-   "LLLLLLLLLLLLLLLL              TW     q            F     LLLLLLLLLLL LLLLLLLLL",
-   "LLLLLLLLLLLLLLLL           1  TWWWW      q   q    F     LLLLLLLLLLL LLLLLLLLL",
-   "LLLLLLLLLLLLLLLL              TWWW                F     LLLLLLLLLLL LLLLLLLLL",
-   "LLLLLLLLLLLLLLLL        TTTTTTT WWW               F     LLLLLLLLLLL LLLLLLLLL",
-   "LLLLLLLLLLLLLLLL                W WW              F     LLLLLLLLLLL LLLLLLLLL",
-   "LLLLLLLLLLLLLLLL                W  W             HF     LLLLLLLLLLL  LLLLLLLL",
-   "LLLLLLLLLLLLLLLL                T  T              F     LLLLLLLLLLLL 2qLLLLLL",
-   "LLLLLLLLLLLLLLLL            3              M      F     LLLLLLLLLLLLL HLLLLLL",
-   "LLLLLLLLLLLLLLLL                                  F     LLLLLLLLLLLLL  LLLLLL",
-   "LLLLLLLLLLLLLLLL                     T            F     LLLLLLLLLLLLLL LLLLLL",
-   "LLLLLLLLLLLLLLLL          M                       F                    LLLLLL",
-   "LLLLLLLLLLLLLLLL                                  F     LLLLLLLLLLLLLLLLLLLLL",
-   "LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL",
-   "LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL",
-   "LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL",
-   "LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL",
-   "LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL",
-   "LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL"]
-   
-level3 = mkArea dirt $ areaStr
-  ["LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL",
-   "LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL",
-   "LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL",
-   "LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL                LLLLLLLLL",
-   "LLLLLLLLLLLLLLLL                 q       q   q          LLLLLLLLLLL LLLLLLLLL",
-   "LLLLLLLLLLLLLLLL                     q                  LLLLLLLLLLL LLLLLLLLL",
-   "LLLLLLLLLLLLLLLL          TTTTT          q   q    F     LLLLLLLLLLL LLLLLLLLL",
-   "LLLLLLLLLLLLLLLL              TW     q            F     LLLLLLLLLLL LLLLLLLLL",
-   "LLLLLLLLLLLLLLLL           1  TWWWW      q   q    F     LLLLLLLLLLL LLLLLLLLL",
-   "LLLLLLLLLLLLLLLL              TWWW                F     LLLLLLLLLLL LLLLLLLLL",
-   "LLLLLLLLLLLLLLLL        TTTTTTT WWW               F     LLLLLLLLLLL LLLLLLLLL",
-   "LLLLLLLLLLLLLLLL                W WW              F     LLLLLLLLLLL LLLLLLLLL",
-   "LLLLLLLLLLLLLLLL                W  W             HF     LLLLLLLLLLL  LLLLLLLL",
-   "LLLLLLLLLLLLLLLL                T  T              F     LLLLLLLLLLLL 2qLLLLLL",
-   "LLLLLLLLLLLLLLLL            3                     F     LLLLLLLLLLLLL HLLLLLL",
-   "LLLLLLLLLLLLLLLL                                  F     LLLLLLLLLLLLL  LLLLLL",
-   "LLLLLLLLLLLLLLLL                     T            F     LLLLLLLLLLLLLL LLLLLL",
-   "LLLLLLLLLLLLLLLL                                  F                    LLLLLL",
-   "LLLLLLLLLLLLLLLL                                  F     LLLLLLLLLLLLLLLLLLLLL",
-   "LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL",
-   "LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL",
-   "LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL",
-   "LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL",
-   "LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL",
-   "LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL"]
-
 tree1 = (mkThing "Tree" "https://github.com/3noch/codeworld-game/raw/main/img/tree1.png" 2 3) { thingCollisionRect = Just (Rect 0.4 (-0.8) 1.2 (-3)) }
 grass = (mkThing "Grass" "https://github.com/3noch/codeworld-game/raw/main/img/grass.png" 1.1 1.1) { thingOpaque = True, thingCollisionRect = Nothing }
 dirt = (mkThing "Dirt" "https://github.com/3noch/codeworld-game/raw/main/img/dirt.png" 1.1 1.1) { thingOpaque = True, thingCollisionRect = Nothing }
@@ -209,21 +117,30 @@ lava = (mkThing "Lava" "https://github.com/3noch/codeworld-game/raw/main/img/lav
 squirtle = (mkThing "Squirtle" "https://github.com/3noch/codeworld-game/raw/main/img/squirtle.png" 1 1) {
     thingCollisionBehavior = CollisionApply (applyToPlayer (\dt p -> p{ spriteHealth = min 8 (spriteHealth p + 2 * dt) })) False
   }
-heart = (mkThing "Mushroom" "https://github.com/3noch/codeworld-game/raw/main/img/heart.png" 0.5 0.5) {
+baltoy = (mkThing "Baltoy" "https://github.com/3noch/codeworld-game/raw/main/img/baltoy.png" 1 1) {
+    thingCollisionBehavior = CollisionBlock
+  }
+heart = (mkThing "Heart" "https://github.com/3noch/codeworld-game/raw/main/img/heart.png" 0.5 0.5) {
     thingCollisionBehavior = CollisionApply (applyToPlayer (\dt p -> p{ spriteHealth = min 8 (spriteHealth p + 3) })) True
   }
-heartImg = image "Heart" "https://github.com/3noch/codeworld-game/raw/main/img/heart.png" 1 1
 baddy = (mkThing "Baddy" "https://github.com/3noch/codeworld-game/raw/main/img/lava.png" 1 1) {
     thingPic = solidCircle 0.5,
     thingCollisionBehavior = CollisionApply (applyToPlayer (\dt p -> p{ spriteHealth = max 0 (spriteHealth p - 2 * dt) })) False
   }
-fright = (mkThing "fright" "https://github.com/3noch/codeworld-game/raw/main/img/fright.png" 1 1) {
+fright = (mkThing "Fright" "https://github.com/3noch/codeworld-game/raw/main/img/fright.png" 1 1) {
     thingPic = colored red (solidCircle 0.6),
     thingCollisionBehavior = CollisionApply (applyToPlayer (\dt p -> p{ spriteHealth = max 0 (spriteHealth p - 5 * dt)})) False
   }
-mushroom = (mkThing "mushroom" "https://github.com/3noch/codeworld-game/raw/main/img/mushroom.png" 0.5 0.5) {
+mushroom = (mkThing "Mushroom" "https://github.com/3noch/codeworld-game/raw/main/img/mushroom.png" 0.5 0.5) {
     thingCollisionBehavior = CollisionApply (applyToPlayer (\dt p -> p{spriteMaxVelocity = spriteMaxVelocity p + 0.5 * dt})) True
   }
+star = (mkThing "Start" "" 0.5 0.5) {
+    thingPic = dilated 0.5 starPic,
+    thingCollisionBehavior = CollisionApply (\dt w -> w{ worldNumStars = worldNumStars w + 1}) True
+  }
+
+starPic = lettering "🌟"
+heartPic = image "Heart" "https://github.com/3noch/codeworld-game/raw/main/img/heart.png" 1 1
 
 person = (mkThing "Person" "https://github.com/3noch/codeworld-game/raw/main/img/player.png" 1 1) { thingCollisionRect = Just (Rect 0.1 (-0.3) 0.8 (-0.7)) }
 
@@ -238,7 +155,9 @@ parseMapChar 'w' = Just $ Right water
 parseMapChar 'L' = Just $ Right lava
 parseMapChar 'P' = Just $ Left $ Sprite person 0 0 0 0 5 3 MovementLogicStationary
 parseMapChar 'q' = Just $ Left $ Sprite squirtle 0 0 0 0 5 2 MovementLogicFleePlayer
+parseMapChar 'b' = Just $ Left $ Sprite baltoy 0 0 0 0 5 4 MovementLogicFleePlayer
 parseMapChar '❤' = Just $ Left $ Sprite heart 0 0 0 0 0 0 MovementLogicStationary
+parseMapChar '🌟' = Just $ Left $ Sprite star 0 0 0 0 0 0 MovementLogicStationary
 parseMapChar 'H' = Just $ Left $ Sprite heart 0 0 0 0 0 0 MovementLogicStationary
 parseMapChar 'x' = Just $ Left $ Sprite baddy 0 0 0 0 5 3 MovementLogicGoToPlayer
 parseMapChar 'F' = Just $ Left $ Sprite fright 0 0 0 0 5 2 MovementLogicGoToPlayer
@@ -247,11 +166,13 @@ parseMapChar '2' = Just $ Right $ portalTo level2 0 0
 parseMapChar '3' = Just $ Right $ portalTo level3 (-15) (-5)
 parseMapChar _ = Nothing
 
+draw world | worldNumStars world >= 5 = drawWin
 draw world | spriteHealth (worldPlayer world) > 0 = drawAlive world
 draw _ = drawDead
 
+drawWin = lettering "You Won!" & translated 0 (-5) (dilated 0.5 (lettering "press Escape to restart")) & colored white (solidRectangle 40 40)
 drawDead = colored white (lettering "Game Over" & translated 0 (-5) (dilated 0.5 (lettering "press Escape to restart"))) & solidRectangle 40 40
-drawAlive world = frameRate & healthHearts & translated (-rectCenterX viewPort) (-rectCenterY viewPort) (pictures things & pictures tiles) & solidRectangle 20 20
+drawAlive world = frameRate & stars & healthHearts & translated (-rectCenterX viewPort) (-rectCenterY viewPort) (pictures things & pictures tiles) & solidRectangle 20 20
   where
     mapRect = boundingRect (0, 0) $ Rect 0 0 (fromIntegral $ areaWidth $ worldArea world) (fromIntegral $ areaHeight $ worldArea world)
     viewPort = limitViewPort mapRect (boundingRect (playerX, playerY) $ Rect 0 0 20 20)
@@ -266,19 +187,12 @@ drawAlive world = frameRate & healthHearts & translated (-rectCenterX viewPort) 
 
     theMap = mapInsert playerX playerY playerThing $ mkAreaThings (worldArea world)
     Sprite playerThing playerX playerY _ _ playerHealth _ _ = worldPlayer world
-    healthHearts = translated (-9.5) 9.5 (dilated 0.5 (heartArray 0 playerHealth))
-    heartArray idx health | health <= 0 = blank
-    heartArray idx health = translated (idx * 1.5) 0 heartImg & heartArray (idx+1) (health-1)
+    stars = translated (-9.5) 8.5 (dilated 0.5 (picArray starPic 0 (worldNumStars world)))
+    healthHearts = translated (-9.5) 9.5 (dilated 0.5 (picArray heartPic 0 playerHealth))
+    picArray pic idx amount | amount <= 0 = blank
+    picArray pic idx amount = translated (idx * 1.5) 0 pic & picArray pic (idx+1) (amount-1)
     
     frameRate = translated 9 9 $ lettering(T.pack $ show (round $ let x = worldDt world in if x == 0 then 0 else 1 / x))
-    
-    {-
-    shownCollisionRects = viewPort : collisionRects' [(x, y, loc) | ((y, x), loc) <- Map.toAscList theMap]
-    collisionRects' :: [(Double, Double, LocationContent)] -> [Rect Double]
-    collisionRects' xs = [boundingRect (x, y) colRect | (x, y, LocationContent tile things) <- xs, thing <- maybeToList tile ++ things, Just colRect <- [collisionRect thing]]
-    debug = lettering(T.pack $ show col) & pictures (map drawRect shownCollisionRects)
-    col = collision (spriteCollisionRect $ worldPlayer world) [(x, y, loc) | ((y, x), loc) <- Map.toAscList $ worldArea world]
-    -}
 
 mapInsert :: Double -> Double -> Thing -> Map (Int, Int) LocationContent -> Map (Int, Int) LocationContent
 mapInsert x y thing = Map.insertWith
@@ -292,6 +206,7 @@ mapInsert x y thing = Map.insertWith
   where
     newTile = if thingOpaque thing then Just thing else Nothing
     newThing = ((y, x), thing)
+
 mkAreaThings area = foldl' (\m sprite -> mapInsert (spriteX sprite) (spriteY sprite) (spriteThing sprite) m) (areaTiles area) (areaSprites area)
 
 -- Types --
@@ -325,7 +240,8 @@ data MovementLogic = MovementLogicStationary | MovementLogicGoToPlayer | Movemen
 data World = World {
     worldPlayer :: Sprite,
     worldArea :: Area,
-    worldDt :: Double
+    worldDt :: Double,
+    worldNumStars :: Int
   }
 
 data Area = Area {
@@ -421,11 +337,6 @@ buildCollisions r m = applyCollisionsTo r
       , thing <- maybeToList (((fromIntegral y, fromIntegral x),) <$> tile) ++ things
       ]
 
-drawRect :: Rect Double -> Picture
-drawRect (Rect l t r b) = polyline points
-  where
-    points = [(l, t), (r, t), (r, b), (l, b), (l, t)]
-
 update (KeyPress "Esc") w = world0
 update event w | spriteHealth (worldPlayer w) > 0 = handle event w
 update _ w = w
@@ -448,7 +359,7 @@ handle event = case event of
         modSpriteX (+ xBounce) <<< modSpriteY (+ yBounce) $ sprite
       movedSprites = map (updateSpriteMovement dt (worldPlayer world)) $ areaSprites $ worldArea world
       collidedSprites = map (doCollision movedSprites) movedSprites
-      
+
       movedPlayer = moveSprite dt $ worldPlayer world
       (xBounce, yBounce, worldEffect) = getCollision movedPlayer collidedSprites
       updateWorld w = w{worldDt = dt, worldArea = (worldArea world){areaSprites = collidedSprites}, worldPlayer = movedPlayer}
