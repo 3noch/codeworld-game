@@ -17,12 +17,13 @@ main = activityOf world0 update draw
 
 world0 = World {
     worldPlayer = Sprite person 0 10 0 0 5 4 MovementLogicStationary,
-    worldArea = level1,
+    worldAreas = Map.singleton "level1" level1,
+    worldAreaName = "level1",
     worldDt = 0,
     worldNumStars = 0
   }
 
-level1 = mkArea grass $ areaStr
+level1 = mkArea "level1" grass $ areaStr
   ["                                           ",
    "                                           ",
    "             3        ❤         🌟          ",
@@ -51,7 +52,7 @@ level1 = mkArea grass $ areaStr
    "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
    "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW"]
 
-level2 = mkArea dirt $ areaStr
+level2 = mkArea "level2" dirt $ areaStr
   ["LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL",
    "LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL",
    "LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL",
@@ -78,7 +79,7 @@ level2 = mkArea dirt $ areaStr
    "LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL",
    "LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL"]
 
-level3 = mkArea dirt $ areaStr
+level3 = mkArea "level3" dirt $ areaStr
   [
    "ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg",
    "ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg",
@@ -144,7 +145,13 @@ heartPic = image "Heart" "https://github.com/3noch/codeworld-game/raw/main/img/h
 
 person = (mkThing "Person" "https://github.com/3noch/codeworld-game/raw/main/img/player.png" 1 1) { thingCollisionRect = Just (Rect 0.1 (-0.3) 0.8 (-0.7)) }
 
-portalTo level x y = Thing (solidRectangle 1 1) 1 1 True (Just (Rect 0 0 1 1)) (CollisionApply (\_ w -> modPlayerLoc (const x) (const y) w{worldArea = level}) False)
+portalTo area x y = Thing (solidRectangle 1 1) 1 1 True (Just (Rect 0 0 1 1))
+  (CollisionApply
+    (\_ w -> modPlayerLoc (const x) (const y) $ w{
+      worldAreaName = (areaName area), worldAreas = Map.insertWith (\new old -> old) (areaName area) area (worldAreas w)
+    })
+    False
+  )
 
 parseMapChar 'd' = Just $ Right dirt
 parseMapChar 'D' = Just $ Right dirt
@@ -239,12 +246,15 @@ data MovementLogic = MovementLogicStationary | MovementLogicGoToPlayer | Movemen
 
 data World = World {
     worldPlayer :: Sprite,
-    worldArea :: Area,
+    worldAreas :: Map String Area,
+    worldAreaName :: String,
     worldDt :: Double,
     worldNumStars :: Int
   }
+worldArea w = worldAreas w Map.! worldAreaName w
 
 data Area = Area {
+    areaName :: String,
     areaTiles :: Map (Int, Int) LocationContent,
     areaSprites :: [Sprite],
     areaWidth :: Int,
@@ -253,8 +263,8 @@ data Area = Area {
   }
 areaStr = map (map parseMapChar)
 
-mkArea :: Thing -> [[Maybe (Either Sprite Thing)]] -> Area
-mkArea defaultTile rows = foldl' (\m (x, y, maybeThing) -> maybe m (add m x y) maybeThing) (Area Map.empty [] width height defaultTile) indexed
+mkArea :: String -> Thing -> [[Maybe (Either Sprite Thing)]] -> Area
+mkArea name defaultTile rows = foldl' (\m (x, y, maybeThing) -> maybe m (add m x y) maybeThing) (Area name Map.empty [] width height defaultTile) indexed
   where
     add m x y (Left sprite) = m { areaSprites = sprite { spriteX = x, spriteY = y } : areaSprites m }
     add m x y (Right thing) = m { areaTiles = mapInsert x y thing (areaTiles m) }
@@ -322,7 +332,7 @@ buildCollisions r m = applyCollisionsTo r
         (x', y') = collision1 ((x, y) .+ rect0) rect1
     removeSpriteWithRect rect = filter (\sprite -> spriteCollisionRect sprite /= rect)
 
-    doRemoveSprite rect _ world = world{worldArea = (worldArea world){areaSprites = removeSpriteWithRect rect (areaSprites (worldArea world))}}
+    doRemoveSprite rect _ = modArea $ \a -> a{areaSprites = removeSpriteWithRect rect (areaSprites a)}
 
     collisionRects :: [((Double, Double), Thing)] -> [(Rect Double, CollisionBehavior)]
     collisionRects things = [(boundingRect (x, y) colRect, thingCollisionBehavior thing) | ((y, x), thing) <- things, colRect <- maybeToList $ thingCollisionRect thing]
@@ -362,7 +372,7 @@ handle event = case event of
 
       movedPlayer = moveSprite dt $ worldPlayer world
       (xBounce, yBounce, worldEffect) = getCollision movedPlayer collidedSprites
-      updateWorld w = w{worldDt = dt, worldArea = (worldArea world){areaSprites = collidedSprites}, worldPlayer = movedPlayer}
+      updateWorld w = modArea (\a -> a{areaSprites = collidedSprites}) $ w{worldDt = dt, worldPlayer = movedPlayer}
       applyCollision = modPlayerLoc (+ xBounce) (+ yBounce) >>> worldEffect dt
     in
       updateWorld >>> applyCollision $ world
@@ -386,6 +396,7 @@ updateSpriteMovement dt player sprite = case spriteMovement sprite of
 spriteCollisionRect (Sprite thing x y _ _ _ _ _) = boundingRect (x, y) $ fromMaybe (Rect 0 0 (thingWidth thing) (thingHeight thing)) (thingCollisionRect thing)
 
 modPlayer f w = w { worldPlayer = f (worldPlayer w) }
+modArea f w = w { worldAreas = Map.adjust f (worldAreaName w) (worldAreas w) }
 modPlayerLoc fx fy = modPlayer (modSpriteY fy) <<< modPlayer (modSpriteX fx)
 applyToPlayer f dt = modPlayer (f dt)
 modSpriteVelocityX f s = s { spriteVelocityX = f (spriteVelocityX s) }
