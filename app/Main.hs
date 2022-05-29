@@ -24,14 +24,53 @@ world0 = World {
   }
 
 level1 = mkArea "level1" grass $ areaStr
+   ["T   q                q  F    q    q    WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWw",
+    "T                                                   q                      5w",
+    "TTTTTTTTD    F    D2D         DTTDTTTTWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW  T",
+    "TDTDTTDTD        DDDDD        DTDDTDTTWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW D",
+    "TTTTTDTTD   P   DDWDWDD       DTTDDTTTWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW  T",
+    "TTTTTTTTD      DDWWDWWDD      DDTDDTTTWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW T",
+    "TTDTTTTTD     DDWWWDWWWDD  q   DTTDDDTTTWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW W",
+    "TTTTDTTTD    DDWWWWDWWWWDD    DTTTDDTDDWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW W",
+    "TTTTTDTTD   DDWWWWWDWWWWWDD   DTTT DDDDWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW W", 
+    "TTDTTTTTD  DDWWWWWWDWWWWWWDD  DDDDDDDDD    q WWWWWWWWWWWWWWWWWWWWWWWWWWWWWW T",
+    "TTTTTDDTD DDWWWWWWWDWWWWWWWDD DDDDDDDDD        WWWWWWWWWWWWWWWWWWWWWWWWWWWW W",   
+    "TTTTTTTTDDDWWWWWWWWDWWWWWWWWDDDTTTDTTDT     H                               W",
+    "TTTDTTTT3DDDDDDDDDDDDDDDDDDDDDDTTTDTTTT         WWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+    "TTTTDTDTDDDWWWWWWWWDWWWWWWWWDDDDTTTTTTTWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+    "TTDTTTTTD DDWWWWWWWDWWWWWWWDD DTTTTTDTTWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+    "TTTTTDTTD  DDWWWWWWDWWWWWWDD  DTTTTDTTTWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+    "DDDDDDDDD   DDWWWWWDWWWWWDDq  DDDDDDDDDWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+    "D  L         DDWWWWDWWWWDD         L   WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+    "D  🌟       q  DDWWWDWWWDD q        P  DWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+    "TTT  TTTD      DDWWDWWDD      DTDTDTTTTWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+    "TTDTTDTTD       DDWDWDD       DTDTTTTDTWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+    "TTTTDTTTD        DDDDD    q   DTDTTTDTTWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+    "TTTTTTDTD         D4D         DTTTTDTTTWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+    "TTDTTTTTD   F     q     q     DTDTTTDTTWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+    "TTTTTTTTD                     DTTTDTTTTWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+    "TTDTDTTTD                     DDTTTTDTTWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+    "DTTTTDTTD  q                  DDTTTTDTTTWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+    "TTTTTTTTD      H       q      DTDTTTTTTWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+    "TTDTTDTTD                     DTTTTTDTTWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+    "TTTTTTTTD         F        P  DTTDTTTTTWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+    "TTTTDTTTD  q            q     DTTTTDTTTWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+    "TTTTTTTTD                     DDTTTTTTTWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+    "TTDTTTTTDLD   LD 🌟DL   LD  DLTTTTTTTTTWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+    "TTTTTTDTDLD DLD DLD DLDDLD DLDTTTTTTTTTWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+    "TTTTTTTTDDLDLDLDLDLDLDLDLDLDLDDTTTTTTTTWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+    "TTTTTTTTTLLLLLLLLLLLLLLLLLLLLLTTTTTTTTTWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+    "DLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLDWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW"]
+
+level2 = mkArea "level2" grass $ areaStr
   ["                                           ",
    "                                           ",
-   "             3        ❤         🌟          ",
+   "             1        ❤                    ",
    "                                           ",
    "T     TTTT      TTTTTTTTTTTTTTTTTTTTTTTTTTT",
    "T  q   TT       TTTTTTTTTTTTTTTT      TTTTTT",
    "T       T       TTTTTTTTTTTTTT    🌟      TT",
-   "T    b     x    TTTTTTTTTTTTTTT   ❤   2  TT",
+   "T    b     x    TTTTTTTTTTTTTTT   ❤      TT",
    "T               TTTTTTTTTTTTTTTTTTTT    TTT",
    "T   ❤           TTTTTTTTTTTTTTTTT      TTTT",
    "WWWWWWWWWWWWW WWWWWWWWWWWWWWWWWWWWWW    WWW",
@@ -52,26 +91,26 @@ level1 = mkArea "level1" grass $ areaStr
    "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
    "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW"]
 
-level2 = mkArea "level2" dirt $ areaStr
+level3 = mkArea "level3" dirt $ areaStr
   ["LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL",
    "LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL",
    "LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL",
-   "LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL",
-   "LLLLLLLLLLLLLLLL                                        LLLLLLLLLLLLLLLLLLLLL",
-   "LLLLLLLLLLLLLLLL                 ❤                      LLLLLLLLLLLLLLLLLLLLL",
-   "LLLLLLLLLLLLLLLL          TTTTT                         LLLLLLLLLLLLLLLLLLLLL",
-   "LLLLLLLLLLLLLLLL              T              ❤          LLLLLLLLLLLLLLLLLLLLL",
-   "LLLLLLLLLLLLLLLL           1  T                         LLLLLLLLLLLLLLLLLLLLL",
-   "LLLLLLLLLLLLLLLL              T                         LLLLLLLLLLLLLLLLLLLLL",
-   "LLLLLLLLLLLLLLLL        TTTTTTT                         LLLLLLLLLLLLLLLLLLLLL",
-   "LLLLLLLLLLLLLLLL                                        LLLLLLLLLLLLLLLLLLLLL",
-   "LLLLLLLLLLLLLLLL                                        LLLLLLLLLLLLLLLLLLLLL",
-   "LLLLLLLLLLLLLLLL                                        LLLLLLLLLLLLLLLLLLLLL",
-   "LLLLLLLLLLLLLLLL       x                                LLLLLLLLLLLLLLLLLLLLL",
-   "LLLLLLLLLLLLLLLL       x                                LLLLLLLLLLLLLLLLLLLLL",
-   "LLLLLLLLLLLLLLLL       x             T                  LLLLLLLLLLLLLLLLLLLLL",
-   "LLLLLLLLLLLLLLLL       x                                LLLLLLLLLLLLLLLLLLLLL",
-   "LLLLLLLLLLLLLLLL                                        LLLLLLLLLLLLLLLLLLLLL",
+   "LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL               LLLLLLLLL",
+   "LLLLLLLLLLLLLLLL                 q       q   q          LLLLLLLLLLL LLLLLLLLL",
+   "LLLLLLLLLLLLLLLL     ❤               q                  LLLLLLLLLLL LLLLLLLLL",
+   "LLLLLLLLLLLLLLLL          TTTTT          q   q    F     LLLLLLLLLLL LLLLLLLLL",
+   "LLLLLLLLLLLLLLLL              TW     q            F     LLLLLLLLLLL LLLLLLLLL",
+   "LLLLLLLLLLLLLLLL           1  TWWWW      q   q    F     LLLLLLLLLLL LLLLLLLLL",
+   "LLLLLLLLLLLLLLLL              TWWW                F     LLLLLLLLLLL LLLLLLLLL",
+   "LLLLLLLLLLLLLLLL        TTTTTTT WWW               F     LLLLLLLLLLL LLLLLLLLL",
+   "LLLLLLLLLLLLLLLL                W WW              F     LLLLLLLLLLL LLLLLLLLL",
+   "LLLLLLLLLLLLLLLL                W  W             HF     LLLLLLLLLLL  LLLLLLLL",
+   "LLLLLLLLLLLLLLLL                T  T              F     LLLLLLLLLLLL 🌟qLLLLLL",
+   "LLLLLLLLLLLLLLLL                           M      F     LLLLLLLLLLLLL HLLLLLL",
+   "LLLLLLLLLLLLLLLL                                  F     LLLLLLLLLLLLL  LLLLLL",
+   "LLLLLLLLLLLLLLLL                     T            F     LLLLLLLLLLLLLL LLLLLL",
+   "LLLLLLLLLLLLLLLL   🌟     M                       F         ❤          LLLLLL",
+   "LLLLLLLLLLLLLLLL                                  F     LLLLLLLLLLLLLLLLLLLLL",
    "LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL",
    "LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL",
    "LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL",
@@ -79,17 +118,17 @@ level2 = mkArea "level2" dirt $ areaStr
    "LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL",
    "LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL"]
 
-level3 = mkArea "level3" dirt $ areaStr
+level4 = mkArea "level4" dirt $ areaStr
   [
-   "ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg",
+   "gggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg",
    "ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg",
    "ggggggggggggggggggggggg❤ggggggggggggggggggggggggggggggggggggggggggggggggggggg",
    "ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg",
    "ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg",
    "ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg",
    "                                TTTTTTTTT                                    ",
-   "                                T T   ❤ T                                   ",
-   "                                T T     T             ❤                     ",
+   "                                T T     T                                   ",
+   "  1                             T T  🌟 T             ❤                     ",
    "                                T       T                                    ",
    "ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
    "LLLLLLdLLLLLLLLLLLLLLLLLLLLLLLLLLdLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLdLLLLLLLLLL",
@@ -103,8 +142,43 @@ level3 = mkArea "level3" dirt $ areaStr
    "WWWWWWWWWWWWWWWWWWWWWWWWWggggggWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
    "WWWWWWWWWWWWWWWWWWWWWWWWWggggggWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
    "WWWWWWWWWWWWWWWWWWWWWWWWWggggggWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
-   " 1                                                        ❤❤             2  "
+   " 🌟                                                        ❤❤               "
   ]
+  
+level5 = mkArea "level5" grass $ areaStr
+  ["",
+   "",
+   "  1        ❤",
+   "",
+   "",
+   "",
+   "T    TTTTTTT     TTTT   TTTT",
+   "T      TT       TTTTT  TTTTTTT",
+   "T       TTTTT  T            TT",
+   "T T              T            TT",
+   "T    TTT T T               TTTTTT",            
+   "                 TTTTTTTTTTTT",
+   "WWWWWWWWWW                  TT TT",
+   "WWWWWWWWWWWWW WWWWWWWWWWWW  TT",
+   "WWWWWWWWWWWWW WWWWWWWWWWWWW  T",
+   "WWWWWWWWWWWWW WWWWWWWWWWWWW",
+   "WWWWWWWWWWWWW WWWWWWWWWWWWWWWWWW WWWWWWW",
+   "WWWWWWWWWW T   WWWWWWWWWWWWWWWWW  WWWWWW",
+   "WWWWWWWWWW      WWWWWWWWWWWWWWWW WWWWWWW",
+   "WWWWWWWWWW      WWWWWWWWWWWWWWWW 🌟 WWWWWWW",
+   "WWWWWWWWWW      WWWWWWWWWWWWWWWW W WWWWW",
+   "WWWWWWWWWWW W WWWWWWWWWWWWWWWWWW W",
+   "WWWWWWWWWWW W                    WWWWWWWWWWWWW WWWWWWWWWWW",
+   "WWWWWWWWWWW WWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+   "WWWWWWW T    WWWWWWWWWWWWWWWWWWWWWWWWWWWWWTTT   TTTTTT",
+   "WWWWWWW     x WWWWWWWWWWWWWWWWWWWWWWWWWWW",
+   "WWWWWW3      WWWWWWWWWWWWWWWW T WWWWWWWWWWWWW",
+   "WWWWWWWWW WWWWWWWWWWWWWWWWWWWW  WWWWWWWW",
+   "WWWWWWWWW WWWWWWWWWWWWWWWWWWWWW WWWWWWWWW",
+   "WWWWWWWWW WWWWWWWWWWWWWWWWWWWWW WWWWWWWWW",
+   "TTTTTTTT   TTTT       TTTTWWWW",
+   "TTTTTTTTT   T x  TT          WW",
+   "TTTTTTTT               🌟        "]
 
 tree1 = (mkThing "Tree" "https://github.com/3noch/codeworld-game/raw/main/img/tree1.png" 2 3) { thingCollisionRect = Just (Rect 0.4 (-0.8) 1.2 (-3)) }
 grass = (mkThing "Grass" "https://github.com/3noch/codeworld-game/raw/main/img/grass.png" 1.1 1.1) { thingOpaque = True, thingCollisionRect = Nothing }
@@ -143,7 +217,7 @@ star = (mkThing "Start" "" 0.5 0.5) {
 starPic = lettering "🌟"
 heartPic = image "Heart" "https://github.com/3noch/codeworld-game/raw/main/img/heart.png" 1 1
 
-person = (mkThing "Person" "https://github.com/3noch/codeworld-game/raw/main/img/player.png" 1 1) { thingCollisionRect = Just (Rect 0.1 (-0.3) 0.8 (-0.7)) }
+person = (mkThing "Person" "https://github.com/3noch/codeworld-game/raw/main/img/player.png" 1 1) { thingCollisionRect = Just (Rect 0 (-0.3) 0.45 (-0.7)) }
 
 portalTo area x y = Thing (solidRectangle 1 1) 1 1 True (Just (Rect 0 0 1 1))
   (CollisionApply
@@ -169,11 +243,14 @@ parseMapChar 'H' = Just $ Left $ Sprite heart 0 0 0 0 0 0 MovementLogicStationar
 parseMapChar 'x' = Just $ Left $ Sprite baddy 0 0 0 0 5 3 MovementLogicGoToPlayer
 parseMapChar 'F' = Just $ Left $ Sprite fright 0 0 0 0 5 2 MovementLogicGoToPlayer
 parseMapChar '1' = Just $ Right $ portalTo level1 0 10
-parseMapChar '2' = Just $ Right $ portalTo level2 0 0
+parseMapChar '2' = Just $ Right $ portalTo level2 0 10
 parseMapChar '3' = Just $ Right $ portalTo level3 (-15) (-5)
+parseMapChar '4' = Just $ Right $ portalTo level4 (-15) (-5)
+parseMapChar '5' = Just $ Right $ portalTo level5 (-15) (-5)
 parseMapChar _ = Nothing
 
-draw world | worldNumStars world >= 5 = drawWin
+numStarsToWin = 10
+draw world | worldNumStars world >= numStarsToWin = drawWin
 draw world | spriteHealth (worldPlayer world) > 0 = drawAlive world
 draw _ = drawDead
 
@@ -194,7 +271,10 @@ drawAlive world = frameRate & stars & healthHearts & translated (-rectCenterX vi
 
     theMap = mapInsert playerX playerY playerThing $ mkAreaThings (worldArea world)
     Sprite playerThing playerX playerY _ _ playerHealth _ _ = worldPlayer world
-    stars = translated (-9.5) 8.5 (dilated 0.5 (picArray starPic 0 (worldNumStars world)))
+    stars = if worldNumStars world == 0
+            then translated (-8.5) 8.5 (dilated 0.5 (lettering ("find " <> T.pack (show numStarsToWin) <> " stars")))
+            else translated (-9.5) 8.5 (dilated 0.5 starsArray)
+    starsArray = picArray starPic 0 (worldNumStars world)
     healthHearts = translated (-9.5) 9.5 (dilated 0.5 (picArray heartPic 0 playerHealth))
     picArray pic idx amount | amount <= 0 = blank
     picArray pic idx amount = translated (idx * 1.5) 0 pic & picArray pic (idx+1) (amount-1)
